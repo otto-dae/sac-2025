@@ -1,10 +1,13 @@
 import React from "react";
 
 export default function GenerateQrButton(){
+
+
+
     return (
 
 
-        <div className="w-[240px] h-[50px] rounded-[37px] border-2 border-zinc-800 flex justify-center items-center">
+        <div className="w-[240px] h-[50px] rounded-[37px] border-2 flex justify-center items-center">
         <div className="flex items-center gap-2">
             <div data-svg-wrapper className="relative self-center">
                 <svg width="32" height="35" viewBox="0 0 34 39" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +30,7 @@ export default function GenerateQrButton(){
                     </defs>
                 </svg>
             </div>
-            <div className="text-[#121214] text-2xl font-medium font-['Cera Pro'] leading-normal">GENERAR QR</div>
+            <div className=" text-xl font-medium font-['Cera Pro'] leading-normal">GENERAR QR</div>
         </div>
     </div>
          /*<div className="w-[240px] h-[50px] rounded-[37px] border-2 border-zinc-800 items-center gap-[30px] inline-flex">
