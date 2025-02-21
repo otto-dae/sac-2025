@@ -23,8 +23,6 @@ export default function NavbarContainer(){
     return(
         <>
             {isDesktop ? (<Navbar/>) : (<MiniNavbar/>)}
-
         </>
     )
-    
 }

@@ -31,7 +31,7 @@ export default function RootLayout({
 
   return (
     <>
-    <html lang="en" className=" scroll-smooth">
+    <html lang="en" className=" scroll-smooth font-[Cera-pro]">
       <body className={`${geistSans.variable} ${geistMono.variable} bg-[url(/backgroundLanding.jpeg)] bg-[auto_1080px] backdrop-blur-xs`}>
         <NavbarContainer/>
         {children}
