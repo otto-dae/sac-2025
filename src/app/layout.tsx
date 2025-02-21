@@ -31,8 +31,8 @@ export default function RootLayout({
 
   return (
     <>
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-[url(/backgroundLanding.jpeg)] bg-[auto_1000px]`}>
+    <html lang="en" className=" scroll-smooth">
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-[url(/backgroundLanding.jpeg)] bg-[auto_1080px] backdrop-blur-xs`}>
         <NavbarContainer/>
         {children}
       </body>
