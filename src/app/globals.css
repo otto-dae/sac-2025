@@ -10,3 +10,14 @@
     --color-constrastwhitesac: #FFFFFF;
     --color-constrastblacksac: #000000;
 }
+
+@font-face {
+    font-family: 'Cera Pro';
+    src: url('/fonts/Cerapro Thin Demo.otf') format('otf');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    font-family: 'Cera Pro', sans-serif;
+  }
