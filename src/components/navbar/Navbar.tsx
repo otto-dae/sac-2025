@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from "react"
 import Image from "next/image";
 import GenerateQrButton from "./GenerateQRButton";
-import MiniGenerateQrButton from "./MiniGenerateQrButton";
-
 
     const Navbar: React.FC = () => {
         const [isScrolling, setIsScrolling] = useState(false);  
