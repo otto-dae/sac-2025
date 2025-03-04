@@ -5,13 +5,11 @@ export default function Home() {
   return (
     
     <>
-   
       <MenuSections/>
       <BigAhhChicken/>
       <div id="section-1" className="h-svh"></div>
       <div id="section-2" className="h-svh"></div>
       <div id="section-3" className="h-svh"></div>
-
     </>
 
 
