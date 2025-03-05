@@ -1,5 +1,6 @@
 'use client'
 
+import RedBrickPdf from "@/components/dwlrecord/RedBrickPdf";
 import React from "react";
 
 export default function(){
@@ -7,7 +8,8 @@ export default function(){
     
     <html>
         <body>
-
+            <p>layout</p>
+            <RedBrickPdf/>
         </body>
     </html>
     )
