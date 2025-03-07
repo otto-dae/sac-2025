@@ -8,9 +8,8 @@ export default function RootLayout({
     
     return (
       <html lang="en" className=" scroll-smooth font-[Cera-pro]">
-        <body className="bg-amber-950">
+        <body>
           {children}
-          <div className=" w-10 h-10 bg-green-500">asdasd</div>
         </body>
       </html>
   
