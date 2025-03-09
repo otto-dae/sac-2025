@@ -10,3 +10,35 @@
     --color-constrastwhitesac: #FFFFFF;
     --color-constrastblacksac: #000000;
 }
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 12px;
+    height: 20px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    /* background: hsl(0, 0%, 85%); */
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(0, 0, 0);
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 100vh;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(66,205,255);
+    background: linear-gradient(0deg, rgba(66,205,255,1) 0%, rgba(197,240,111,1) 33%, rgba(255,223,98,1) 66%, rgba(247,94,99,1) 100%);
+  }
+
+  .grid-template-stack {
+    grid-template-areas: stack;
+  }
+
+  .grid-area-stack {
+    grid-area: stack;
+  }
+}
+  
