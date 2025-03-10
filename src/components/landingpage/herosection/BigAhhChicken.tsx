@@ -2,7 +2,7 @@ import React from "react";
 
 export default function BigAhhChicken(){
     return(
-        <div id="hero-section-container" className="w-full absolute m-0 bg-amber-500 ">
+        <div id="hero-section-container" className="w-1/2 relative bg-amber-500 ">
             <div className=" w-[251px] h-[251px] bg-[#f75e63] m-auto right-0 rounded-full absolute"></div>
             <div className="w-[122px] h-[122px] bg-[#c5f06f] m-auto right-0 rounded-full absolute"></div>
             <div className="w-[88px] h-[88px] bg-[#42cdff] m-auto left-0 rounded-full absolute"></div>
