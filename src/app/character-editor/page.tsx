@@ -41,9 +41,9 @@ export default function Page() {
     ]
 
     return (
-        <div className='flex flex-col px-2 items-center justify-center h-svh space-y-4 bg-[url("/bg.png")] bg-cover bg-center'>
+        <div className='flex flex-col px-2 md:px-4 items-center justify-center h-svh space-y-4 bg-[url("/bg.png")] bg-cover bg-center select-text'>
             {/* Color selector */}
-            <div className='w-1/2 relative flex justify-center space-x-4'>
+            <div className='w-full md:w-1/2 relative flex justify-center space-x-4'>
                 <div className='absolute top-4 right-0 flex space-x-4 z-60'>
                     <ColorPicker
                         label='Color de ropa'
@@ -72,8 +72,8 @@ export default function Page() {
             </div>
 
             {/* Character Preview */}
-            <div className='relative inset-x-0 w-1/3 h-1/2'>
-                <div className='absolute -top-1 z-50'>
+            <div className='relative w-full md:w-2/3 xl:w-1/3 h-[40vh] md:h-1/2'>
+                <div className='absolute -top-3 z-50'>
                     <Image
                         src={hands}
                         width={500}
@@ -81,7 +81,7 @@ export default function Page() {
                         alt='Hands preview'
                     />
                 </div>
-                <div className='absolute -top-1 z-40'>
+                <div className='absolute -top-3 z-40'>
                     <Image
                         src={selectedParts.headwear}
                         width={500}
@@ -89,7 +89,7 @@ export default function Page() {
                         alt='Headwear preview'
                     />
                 </div>
-                <div className='absolute -top-1 z-30'>
+                <div className='absolute -top-3 z-30'>
                     <Image
                         src={selectedParts.head}
                         width={500}
@@ -97,7 +97,7 @@ export default function Page() {
                         alt='Head preview'
                     />
                 </div>
-                <div className={`absolute -top-1 z-20 ${semantic === 'black' && 'invert'}`}>
+                <div className={`absolute -top-3 z-20 ${semantic === 'black' && 'invert'}`}>
                     <Image
                         src={selectedParts.clothe}
                         width={500}
@@ -105,7 +105,7 @@ export default function Page() {
                         alt='Pattern preview'
                     />
                 </div>
-                <div className='absolute -top-1 z-10 mix-blend-multiply w-full max-w-[500px] aspect-square'>
+                <div className='absolute inset-0 -top-3 z-10 mix-blend-multiply w-full max-w-[500px] aspect-square'>
                     <svg className='w-full h-full' viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M352.787 657.849H295.041H294.235L280 605.206L291.818 567.066L362.725 433.041H398.984L352.787 657.849Z" fill={color.toString()}/>
                         <path d="M352.787 657.849H295.041H294.235L280 605.206L291.818 567.066L362.725 433.041H398.984L352.787 657.849Z" stroke={color.toString()}/>
@@ -113,13 +113,13 @@ export default function Page() {
                         <path d="M673.213 657.581H730.959H731.765L746 604.937L734.182 566.798L663.275 432.772H627.016L673.213 657.581Z" stroke={color.toString()}/>
                     </svg>
                 </div>
-                <div className='absolute -top-1 z-10 w-full max-w-[500px] aspect-square'>
+                <div className='absolute inset-0 -top-3 z-10 w-full max-w-[500px] aspect-square'>
                     <svg className='w-full h-full' viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M518.371 682.29H349.698L400.112 433.441C402.193 420.76 408.385 412.489 423.694 410.479C439.004 408.468 518.371 410.479 518.371 410.479V682.29Z" fill={color.toString()} stroke={color.toString()}/>
                         <path d="M507.762 682.377H676.435L626.021 433.529C623.941 420.848 617.749 412.577 602.439 410.566C587.13 408.556 507.762 410.566 507.762 410.566V682.377Z" fill={color.toString()} stroke={color.toString()}/>
                     </svg>
                 </div>
-                <div className='absolute -top-1 z-0'>
+                <div className='absolute -top-3 z-0'>
                     <Image
                         src={torso}
                         width={500}
@@ -130,9 +130,9 @@ export default function Page() {
             </div>
 
             {/* Customization Panel */}
-            <div className='w-1/2 p-2 justify-center flex bg-black text-white z-60 rounded-full'>
+            <div className='w-full md:w-2/3 xl:w-1/2 p-2 justify-center flex bg-blacksac z-60 rounded-full'>
                 {/* Tabs */}
-                <div className='flex space-x-4'>
+                <div className='flex overflow-x-auto md:overflow-visible space-x-4'>
                     {categories.map(category => (
                         <button
                             key={category.key}
@@ -151,7 +151,7 @@ export default function Page() {
             </div>
 
             {/* Options Grid */}
-            <div className='w-1/2 h-1/3 grid grid-cols-5 place-items-center overflow-auto scrollbar p-4 gap-y-5 bg-white border-2 border-blacksac z-60 rounded-4xl'>
+            <div className='w-full md:w-2/3 xl:w-1/2 h-[40vh] md:h-1/3 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center overflow-auto scrollbar p-4 gap-4 bg-white border-2 border-blacksac z-60 rounded-4xl'>
                 {characterParts[selectedCategory].map(part => (
                     <div
                         key={part.id}
@@ -183,8 +183,8 @@ export default function Page() {
                     </div>
                 ))}
             </div>
-            <div className='w-1/2 mb-2 flex justify-end'>
-                <button className='flex group items-center gap-2 bg-blacksac text-white font-bold py-2 px-4 rounded-full uppercase cursor-pointer transition-all duration-200 hover:text-yellow-300'>
+            <div className='w-full md:w-2/3 xl:w-1/2 mb-4 flex justify-end'>
+                <button className='w-full md:w-auto flex group items-center justify-center gap-2 bg-blacksac text-white font-bold py-2 px-4 rounded-full uppercase cursor-pointer transition-all duration-200 hover:text-yellow-300'>
                     ¡Terminé!
                     <svg className='w-4 h-4 fill-white transition-all duration-200 group-hover:fill-yellow-300' viewBox="0 0 33 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M25.5 0.5H7.5V6.5H25.5V0.5Z"/>
