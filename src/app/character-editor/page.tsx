@@ -35,13 +35,13 @@ export default function Page() {
     }
 
     const categories : { key: 'clothe' | 'head' | 'headwear', src: string }[] = [
-        { key: 'head', src: '/small brik.svg' },
-        { key: 'clothe', src: '/T-Shirt.png' },
-        { key: 'headwear', src: '/Panama Hat.png' },
+        { key: 'head', src: '/head-icon.png' },
+        { key: 'clothe', src: '/shirt-icon.png' },
+        { key: 'headwear', src: '/hair-icon.png' },
     ]
 
     return (
-        <div className='flex flex-col px-2 md:px-4 items-center justify-center h-svh space-y-4 bg-[url("/bg.png")] bg-cover bg-center select-text'>
+        <div className='flex flex-col px-2 md:px-4 items-center justify-center h-svh space-y-4 bg-[url("/bg-character-editor.png")] bg-cover bg-center select-text'>
             {/* Color selector */}
             <div className='w-full md:w-1/2 relative flex justify-center space-x-4'>
                 <div className='absolute top-4 right-0 flex space-x-4 z-60'>
