@@ -30,11 +30,11 @@ export default function Page() {
         clothe: patternParts[0].src,
     })
 
-    const handlePartSelection = (category: 'head' | 'headwear' | 'clothe', part: { id: number; src: StaticImageData, thumbnail?: StaticImageData }) => {
+    const handlePartSelection = (category: 'head' | 'headwear' | 'clothe', part: { id: number; src: StaticImageData, thumbnail: StaticImageData }) => {
         setSelectedParts({ ...selectedParts, [category]: part.src });
     }
 
-    const categories = [
+    const categories : { key: 'clothe' | 'head' | 'headwear', label: string }[] = [
         { key: 'clothe', label: 'Cuerpo' },
         { key: 'head', label: 'Cara' },
         { key: 'headwear', label: 'Cabello' },
