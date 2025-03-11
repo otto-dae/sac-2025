@@ -2,7 +2,7 @@ import React from "react";
 
 export default function BigAhhChicken(){
     return(
-        <div id="hero-section-container" className="relative h-screen w-screen bg-amber-500">
+        <div id="hero-section-container" className="relative h-screen w-screen">
             
 
             <div id="model-container" className="absolute top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2">
@@ -10,10 +10,10 @@ export default function BigAhhChicken(){
             <img className="w-[800.58px] h-[486px] rounded-bl-[999px] top-0 absolute rounded-br-[999px] " src="BigAhhhhChicken.png" />
             </div>
 
-            <div id="model-container" className="w-[1080px] h-150 absolute top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 ">
-            <div className=" w-[251px] h-[251px] bg-[#f75e63] m-auto right-0 top-0 ml-100px rounded-full absolute"></div>
-            <div className="w-[122px] h-[122px] bg-[#c5f06f] absolute m-auto right-4/16 top-6/24 rounded-full -translate-x-6/24 -translate-y-4/16"></div>
-            <div className="w-[88px] h-[88px] bg-[#42cdff] m-auto left-0 rounded-full absolute"></div>
+            <div id="model-container" className="w-full h-screen relative top-1/2 left-1/2  -translate-x-1/2 -translate-y-1/2 ">
+            <div className=" w-[251px] h-[251px] bg-[#f75e63] m-auto right-6/28 top-0 ml-100px rounded-full absolute"></div>
+            <div className="w-[122px] h-[122px] bg-[#c5f06f] absolute m-auto right-6/24 top-14/36 rounded-full -translate-x-6/24 -translate-y-4/16"></div>
+            <div className="w-[88px] h-[88px] bg-[#42cdff] m-auto left-12/32 bottom-1/5 rounded-full absolute"></div>
             </div>
 
             
