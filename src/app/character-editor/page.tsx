@@ -81,14 +81,16 @@ export default function Page() {
                         alt='Hands preview'
                     />
                 </div>
-                <div className='absolute -top-3 z-40'>
-                    <Image
-                        src={selectedParts.headwear}
-                        width={500}
-                        height={500}
-                        alt='Headwear preview'
-                    />
-                </div>
+                {selectedParts.headwear && (
+                    <div className='absolute -top-3 z-40'>
+                        <Image
+                            src={selectedParts.headwear}
+                            width={500}
+                            height={500}
+                            alt='Headwear preview'
+                        />
+                    </div>
+                )}
                 <div className='absolute -top-3 z-30'>
                     <Image
                         src={selectedParts.head}
@@ -97,14 +99,16 @@ export default function Page() {
                         alt='Head preview'
                     />
                 </div>
-                <div className={`absolute -top-3 z-20 ${semantic === 'black' && 'invert'}`}>
-                    <Image
-                        src={selectedParts.clothe}
-                        width={500}
-                        height={500}
-                        alt='Pattern preview'
-                    />
-                </div>
+                {selectedParts.clothe && (
+                    <div className={`absolute -top-3 z-20 ${semantic === 'black' && 'invert'}`}>
+                        <Image
+                            src={selectedParts.clothe}
+                            width={500}
+                            height={500}
+                            alt='Pattern preview'
+                        />
+                    </div>
+                )}
                 <div className='absolute inset-0 -top-3 z-10 mix-blend-multiply w-full max-w-[500px] aspect-square'>
                     <svg className='w-full h-full' viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M352.787 657.849H295.041H294.235L280 605.206L291.818 567.066L362.725 433.041H398.984L352.787 657.849Z" fill={color.toString()}/>
@@ -152,6 +156,22 @@ export default function Page() {
 
             {/* Options Grid */}
             <div className='w-full md:w-2/3 xl:w-1/2 h-[40vh] md:h-1/3 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center overflow-auto scrollbar p-4 gap-4 bg-white border-2 border-blacksac z-60 rounded-4xl'>
+                {/* Delete option on headwear and clothe */}
+                {(selectedCategory === 'headwear' || selectedCategory === 'clothe' ) && (
+                    <div
+                        className='w-24 h-24 p-3 border-2 rounded-lg grid grid-template-stack items-start cursor-pointer transition-all duration-300 border-gray-200 hover:border-yellow-300 hover:scale-105'
+                        onClick={() => setSelectedParts({ ...selectedParts, [selectedCategory]: null })}
+                    
+                    >
+                        <Image
+                            src='/cancel.png'
+                            width={600}
+                            height={600}
+                            alt='Delete icon'
+                        />
+                    </div>
+                )}
+
                 {characterParts[selectedCategory].map(part => (
                     <div
                         key={part.id}
