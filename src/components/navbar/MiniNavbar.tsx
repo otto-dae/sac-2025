@@ -24,17 +24,17 @@ import MiniGenerateQrButton from "./MiniGenerateQrButton";
     return(
         
         <div id="navbar-container" className={`transition md:hidden text-xl flex w-full h-19 content-center items-center justify-between sticky top-0 ${isScrolling ? "bg-black text-white border-white" : "bg-transparent border-zinc-800"}`}>
-            <div className="h-[55px] justify-start items-center gap-[37px] inline-flex">
+            <div className="h-[55px] justify-start items-center gap-[15px] inline-flex">
                 
                 <a href="/">
-                    <div className="self-stretch justify-start items-center gap-2 flex ml-4 transition-all duration-100 hover:scale-106">
-                        <img className="w-10 h-[36.67px]" src="/homeIcon.png" />
+                    <div className="self-stretch justify-start items-center flex ml-2 transition-all duration-100 hover:scale-106">
+                        <img className="w-10 h-[40px]" src="/homeIcon.png" />
                     </div>
                 </a>
             
                 <a href="/record">
-                    <div className="self-stretch justify-start items-center gap-2 flex transition-all duration-100 hover:scale-106">
-                        <img className="w-10 h-[27.06px]" src="/AsistenciaIcon.png"/>
+                    <div className="self-stretch justify-start items-center flex transition-all duration-100 hover:scale-106">
+                        <img className="w-12 h-[35]" src="/AsistenciaIcon.png"/>
                     </div>
                 </a>
 
@@ -44,7 +44,7 @@ import MiniGenerateQrButton from "./MiniGenerateQrButton";
             </div>
 
             <a href="/generateqr">
-                <div className="pl-10 transition-all duration-100 hover:scale-106">
+                <div className="transition-all duration-100 hover:scale-106">
                     <MiniGenerateQrButton/>
                 </div>
             </a>
