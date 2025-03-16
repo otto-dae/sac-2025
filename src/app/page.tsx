@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import LegoWall from "@/components/loading/LegoWall";
-
+import BigAhhChicken from "@/components/landingpage/herosection/BigAhhChicken";
+import MenuSections from "@/components/landingpage/herosection/MenuSections";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,6 +23,8 @@ export default function Home() {
         <LegoWall />
       ) : (
         <main>
+          <MenuSections/>
+          <BigAhhChicken/>
           <p>Landing Page</p>
         </main>
       )}
