@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import LegoWall from "@/components/loading/LegoWall";
 
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 

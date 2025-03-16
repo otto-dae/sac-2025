@@ -9,4 +9,23 @@
     --color-blacksac: #121215;
     --color-constrastwhitesac: #FFFFFF;
     --color-constrastblacksac: #000000;
+
+    --grid-rows-28: repeat(26, minmax(10%, 600px));
+    --grid-rows-14: repeat(14, minmax(0, 1fr));
+    --row-span-14: span 14 / span 14;
+
+    --animate-spining: spin 1s ease-in-out;
+    --animate-negSpining: spinNeg 1s ease-in-out;
+
+    @keyframes spinNeg {
+        to {
+          transform: rotateX(-90deg);
+        }
+    }
+
+    @keyframes spin {
+        to {
+          transform: rotateX(90deg);
+        }
+    }
 }
