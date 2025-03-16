@@ -1,12 +1,12 @@
 import React from 'react';
 import '../globals.css';
-import DownloadPdfLand from '@/components/dwlrecord/DownloadPdfLand';
+import LegoModal from '@/components/dwlrecord/LegoModal';
 
 export default function Dwlrecord() {
     return (
 
 
-            <DownloadPdfLand/>
+            <LegoModal/>
 
         /*<body className=' h-screen bg-gradient-to-r from-[#F75E63] to-[#F75E63] bg-no-repeat bg-[length:50%_100%]'>
             
