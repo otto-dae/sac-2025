@@ -1,17 +1,33 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import LegoWall from "@/components/loading/LegoWall";
 import BigAhhChicken from "@/components/landingpage/herosection/BigAhhChicken";
 import MenuSections from "@/components/landingpage/herosection/MenuSections";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 10000));
+      setIsLoading(false);
+    };
+
+    loadData();
+  }, []);
+
   return (
-    
-    <>
-      <MenuSections/>
-      <BigAhhChicken/>
-      <div id="section-1" className="h-svh"></div>
-      <div id="section-2" className="h-svh"></div>
-      <div id="section-3" className="h-svh"></div>
-    </>
-
-
-  )
+    <div>
+      {isLoading ? (
+        <LegoWall />
+      ) : (
+        <main>
+          <MenuSections/>
+          <BigAhhChicken/>
+          <p>Landing Page</p>
+        </main>
+      )}
+    </div>
+  );
 }
