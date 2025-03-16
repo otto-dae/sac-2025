@@ -25,17 +25,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
+
   return (
-    <html lang="en" className=" scroll-smooth font-[Cera-pro] bg-[url(/backgroundLanding.jpeg)]  bg-center backdrop-opacity-100 backdrop-blur-xs ">
-      <body className={`${geistSans.variable} ${geistMono.variable} `}>
-        <NavbarContainer/>
+    <html lang="en" className="scroll-smooth font-[Cera-pro] relative">
+      <body className={`${geistSans.variable} ${geistMono.variable} relative`}>
+        <div className="absolute inset-0 bg-[url(/backgroundLanding.jpeg)] bg-cover bg-center opacity-25 z-[-1]" />
+        <NavbarContainer />
         {children}
       </body>
     </html>
-
   );
-    
-  }
+
+}
 
 

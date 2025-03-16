@@ -19,7 +19,7 @@ export default function BigAhhChicken() {
                 lg:bottom-12/64 lg:text-[73.05px] lg:leading-[73.05px]
                 xl:bottom-5/32 xl:text-[90px] xl:leading-[90px]
                 2xl:bottom-3/18 2xl:text-[90px] 2xl:leading-[90px]">
-            SEMANA ACADÉMICA <br />CULTURAL 2024
+            SEMANA ACADEMICA <br />CULTURAL 2025
           </div>
         </div>
 
@@ -43,7 +43,7 @@ export default function BigAhhChicken() {
           </div>
 
           <div className="mt-6 text-center text-[#1c1c1c] font-light font-['Cera_Pro'] text-xl">
-            SEMANA ACADÉMICA <br />CULTURAL 2024
+            SEMANA ACADEMICA <br />CULTURAL 2025
           </div>
         </div>
 

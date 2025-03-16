@@ -29,3 +29,29 @@
         }
     }
 }
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("/fonts/Fontspring-DEMO-cerapro-medium.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("/fonts/Fontspring-DEMO-cerapro-bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("/fonts/Fontspring-DEMO-cerapro-light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+body {
+
+  font-family: "Cera Pro", sans-serif;
+}
