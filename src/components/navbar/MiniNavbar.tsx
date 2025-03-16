@@ -23,7 +23,7 @@ import MiniGenerateQrButton from "./MiniGenerateQrButton";
     
     return(
         
-        <div id="navbar-container" className={`transition md:hidden text-xl flex w-full h-19 content-center items-center justify-between sticky top-0 ${isScrolling ? "bg-black text-white border-white" : "bg-transparent border-zinc-800"}`}>
+        <div id="navbar-container" className={`z-10 transition md:hidden text-xl flex w-full h-19 content-center items-center justify-between sticky top-0 ${isScrolling ? "bg-black text-white border-white" : "bg-transparent border-zinc-800"}`}>
             <div className="h-[55px] justify-start items-center gap-[15px] inline-flex">
                 
                 <a href="/">
