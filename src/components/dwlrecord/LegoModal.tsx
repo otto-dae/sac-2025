@@ -57,7 +57,7 @@ const LegoModal = () => {
             </div>
             
             <div className="w-full h-fit absolute bottom-0 mb-[18px]
-            sm:w-fit sm:h-fit sm:right-3 sm:top-1/2 sm:-translate-y-1/2 sm:mb-[0px]">
+            sm:w-fit sm:h-fit sm:right-12 sm:mt-[20px] sm:top-1/2 sm:-translate-y-1/2 sm:mb-[0px]">
               <DownloadPdfButton/>
             </div>
             
