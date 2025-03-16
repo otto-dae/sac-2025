@@ -1,31 +1,12 @@
 import React from 'react';
-import RedBrickPdf from '@/components/dwlrecord/RedBrickPdf';
-import TextBubbledwlr from '@/components/dwlrecord/TextBubbledwlr';
-import BoldLego from '@/components/dwlrecord/BoldLego';
-import DownloadPdfButton from '@/components/dwlrecord/DownloadPdfButton';
 import '../globals.css';
+import DownloadPdfLand from '@/components/dwlrecord/DownloadPdfLand';
 
 export default function Dwlrecord() {
     return (
 
-        <>
-            <div className='flex'>
-                <div className='w-1/2 h-screen bg-[#F75E63] relative'>
-                    <div className='w-fit absolute p-10 mr-29 mb-70 bottom-0 right-0'><TextBubbledwlr/></div>
-                    <div className='w-fit absolute mb-4 bottom-0 right-0'><BoldLego/></div>
-                </div>
-                <div className='w-1/2 h-screen relative block'>
-                    <div className='w-full h-fit absolute top-1/2 bottom-1/2'>
-                    <a>
-                    <DownloadPdfButton/>
-                    </a>
-                    </div>
-                    
-                </div>
-            </div>
-            <div className='right-0 ml-10 left-0 absolute top-0'><RedBrickPdf/></div>
 
-        </>
+            <DownloadPdfLand/>
 
         /*<body className=' h-screen bg-gradient-to-r from-[#F75E63] to-[#F75E63] bg-no-repeat bg-[length:50%_100%]'>
             

@@ -3,7 +3,7 @@ import React from "react";
 export default function MiniGenerateQrButton(){
     return(
 
-        <div data-svg-wrapper>
+        <div data-svg-wrapper className="mr-[10px]">
             <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M36 0H12V8H36V0Z" fill="#FFDF62"/>
             <path d="M45 8H3V48H45V8Z" fill="#FFDF62"/>
