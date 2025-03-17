@@ -2,14 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 const colors = [
-  'bg-yellowsac', // #FFDF62
-  'bg-redsac',   // #F75E63
-  'bg-bluesac',  // #42CDFF
-  'bg-greensac', // #C5F06F
+  'bg-yellowsac', 
+  'bg-redsac',   
+  'bg-bluesac',  
+  'bg-greensac',  
 ];
 
 export default function Speakers({ index }: { index: number }) {
-  const colorClass = colors[index % colors.length]; // Selección cíclica de colores
+  const colorClass = colors[index % colors.length]; 
 
   return (
     <div className="flex flex-col items-center">
