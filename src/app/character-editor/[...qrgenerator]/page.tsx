@@ -130,6 +130,8 @@ export default function Page({ params }: { params: Params }) {
 
                 // Renderizar todo
                 canvas.renderAll();
+
+                setCanvasInstance(canvas);
             } catch (error) {
                 console.error(error);
             }
@@ -157,15 +159,20 @@ export default function Page({ params }: { params: Params }) {
         console.log(dataUrl);
     };
 
-    return (
-        <div className='bg-black'>
-            {/* Canvas */}
-            <canvas ref={canvasRef} width="594" height="942"></canvas>
+    const downloadImage = (dataUrl: string) => {
+        const a = document.createElement('a');
+        a.href = dataUrl;
+        a.download = 'qr-sac.png';
+        a.click();
+    }
 
-            {/* Botón para exportar la imagen */}
-            <button onClick={exportImage} className="bg-amber-400 cursor-pointer p-2 rounded">
-                Generar Imagen
+    return (
+        <div className='p-4 gap-4 bg-yellowsac flex flex-col items-center'>
+            <button onClick={() => downloadImage(canvasInstance?.toDataURL({ format: 'png', multiplier: 1 }) || '')} className="cursor-pointer px-4 py-2 rounded-2xl bg-blacksac text-white">
+                Descargar Imagen
             </button>
+
+            <canvas ref={canvasRef} width="594" height="942" className='w-1/3'></canvas>
         </div>
     );
 }
