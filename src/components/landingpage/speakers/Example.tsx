@@ -1,17 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Speakers() {
+const colors = [
+  'bg-yellowsac', 
+  'bg-redsac',   
+  'bg-bluesac',  
+  'bg-greensac',  
+];
+
+export default function Speakers({ index }: { index: number }) {
+  const colorClass = colors[index % colors.length]; 
+
   return (
     <div className="flex flex-col items-center">
       {/* Puntos del bloque de Lego */}
       <div className="flex space-x-16">
-        <div className="w-22 h-10 bg-redsac rounded-t-lg"></div>
-        <div className="w-22 h-10 bg-redsac rounded-t-lg"></div>
+        <div className={`w-22 h-10 ${colorClass} rounded-t-lg`}></div>
+        <div className={`w-22 h-10 ${colorClass} rounded-t-lg`}></div>
       </div>
 
       {/* Base del bloque de Lego */}
-      <div className="w-100 h-100 bg-redsac rounded-lg p-8 flex flex-col items-start text-left">
+      <div className={`w-100 h-100 ${colorClass} rounded-lg p-8 flex flex-col items-start text-left`}>
         {/* Imagen */}
         <div className="w-20 h-20 relative mb-4">
           <Image
