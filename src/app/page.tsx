@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import LegoWall from "@/components/loading/LegoWall";
+import Schedule from "@/components/schedule/Schedule";
 
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
       ) : (
         <main>
           <p>Landing Page</p>
+          <Schedule/>
         </main>
       )}
     </div>
