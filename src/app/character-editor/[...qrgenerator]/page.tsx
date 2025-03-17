@@ -162,6 +162,7 @@ export default function Page({ params }: { params: Params }) {
                 
                 for (let i = 0; i < selectedImages.length; i++) {
                     const part = selectedImages[i];
+                    if (!part) continue;
                     const img = await loadImage(part.src.src, { left: 52, top: 5, scaleX: 0.5, scaleY: 0.5 });
                     applyInvertFilter(img, patternTone === 'black' && i === 2);
                     canvas.add(img);
@@ -169,6 +170,7 @@ export default function Page({ params }: { params: Params }) {
                 
                 for (let i = 0; i < selectedImages.length; i++) {
                     const part = selectedImages[i];
+                    if (!part) continue;
                     const img = await loadImage(part.src.src, { left: 52, top: 444, scaleX: 0.5, scaleY: 0.5, flipY: true });
                     applyInvertFilter(img, patternTone === 'black' && i === 2);
                     canvas.add(img);
