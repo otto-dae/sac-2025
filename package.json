@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.13.2",
     "@tailwindcss/postcss": "^4.0.3",
     "fabric": "^6.6.1",
     "gsap": "^3.12.7",
+    "howler": "^2.2.4",
     "justd-icons": "^1.10.25",
+    "lottie-react": "^2.4.1",
     "nayuki-qr-code-generator": "^1.8.0",
     "next": "15.1.6",
     "postcss": "^8.5.1",
@@ -25,6 +28,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/howler": "^2.2.12",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
