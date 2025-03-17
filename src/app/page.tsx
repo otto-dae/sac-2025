@@ -5,7 +5,7 @@ import LegoWall from "@/components/loading/LegoWall";
 import BigAhhChicken from "@/components/landingpage/herosection/BigAhhChicken";
 import MenuSections from "@/components/landingpage/herosection/MenuSections";
 import Schedule from "@/components/schedule/Schedule";
-
+import Speakers from "@/components/landingpage/speakers/Example";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,9 +25,21 @@ export default function Home() {
         <LegoWall />
       ) : (
         <main>
-          <MenuSections/>
-          <BigAhhChicken/>
-          <Schedule/>
+          <MenuSections />
+          <BigAhhChicken />
+          <Schedule />
+
+          <div className="p-8">
+            <h1 className="text-3xl font-bold underline text-redsac mb-8">
+              Hello world!
+            </h1>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {Array.from({ length: 9 }).map((_, index) => (
+                <Speakers key={index} />
+              ))}
+            </div>
+          </div>
         </main>
       )}
     </div>
