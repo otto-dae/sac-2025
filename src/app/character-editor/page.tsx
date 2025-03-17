@@ -155,7 +155,7 @@ export default function Page() {
             </div>
 
             {/* Options Grid */}
-            <div className='w-full md:w-2/3 xl:w-1/2 h-[40vh] md:h-1/3 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 place-items-center overflow-auto scrollbar p-4 gap-4 bg-white border-2 border-blacksac z-60 rounded-4xl'>
+            <div className='w-full md:w-2/3 xl:w-1/2 h-[40vh] md:h-1/3 grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 place-items-center overflow-auto scrollbar p-4 gap-4 bg-white border-2 border-blacksac z-60 rounded-4xl'>
                 {/* Delete option on headwear and clothe */}
                 {(selectedCategory === 'headwear' || selectedCategory === 'clothe' ) && (
                     <div
