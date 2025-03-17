@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { StaticCanvas, FabricImage, FabricText, filters, loadSVGFromString, util } from 'fabric';
+import { StaticCanvas, FabricImage, FabricText, filters, loadSVGFromString, util, ImageProps, ObjectEvents, SerializedImageProps } from 'fabric';
 
 import qrbg from '@/assets/QRCard.png';
 import qricon from '@/assets/qr-block-icon.png';
@@ -14,7 +14,11 @@ import hands from '@/assets/character-editor/body/hands.png';
 
 import generateQRCode from '@/components/character-editor/CreateQR';
 
-export default function Page({ params }) {
+interface Params {
+    qrgenerator: string[];
+}
+
+export default function Page({ params }: { params: Params }) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const [canvasInstance, setCanvasInstance] = useState<StaticCanvas | null>(null);
     const router = useRouter()
@@ -52,7 +56,7 @@ export default function Page({ params }) {
             });
         };
 
-        const applyInvertFilter = (image, shouldInvert) => {
+        const applyInvertFilter = (image: FabricImage<Partial<ImageProps>, SerializedImageProps, ObjectEvents>, shouldInvert: boolean) => {
             if (shouldInvert) {
                 const invertFilter = new filters.Invert();
                 image.filters.push(invertFilter);
@@ -74,7 +78,7 @@ export default function Page({ params }) {
                     // Obtener los objetos de la propiedad "objects"
                     const objects = parsedSVG.objects;
                     // Agrupar los elementos SVG
-                    const svgObject = util.groupSVGElements(objects, {});
+                    const svgObject = util.groupSVGElements(objects.filter(obj => obj !== null), {});
                     svgObject.globalCompositeOperation = 'multiply'
                     return svgObject;
                 })
@@ -95,7 +99,7 @@ export default function Page({ params }) {
                     // Obtener los objetos de la propiedad "objects"
                     const objects = parsedSVG.objects;
                     // Agrupar los elementos SVG
-                    const svgObject = util.groupSVGElements(objects, {});
+                    const svgObject = util.groupSVGElements(objects.filter(obj => obj !== null), {});
                     return svgObject;
                 })
                 .catch((error) => {
@@ -110,7 +114,7 @@ export default function Page({ params }) {
                     // Obtener los objetos de la propiedad "objects"
                     const objects = parsedSVG.objects;
                     // Agrupar los elementos SVG
-                    const svgObject = util.groupSVGElements(objects, {});
+                    const svgObject = util.groupSVGElements(objects.filter(obj => obj !== null), {});
                     return svgObject;
                 })
                 .catch((error) => {
@@ -132,22 +136,27 @@ export default function Page({ params }) {
                 const bodyImage1 = await loadImage(torso.src, { left: 52, top: 5, scaleX: 0.5, scaleY: 0.5 });
                 canvas.add(bodyImage1);
                 const svg1 = await createSVG1();
-                svg1.set({ left: 192, top: 221, scaleX: 0.5, scaleY: 0.5 });
-                canvas.add(svg1);
+                if (svg1) {
+                    svg1.set({ left: 192, top: 221, scaleX: 0.5, scaleY: 0.5 });
+                    canvas.add(svg1);
+                }
                 const svg2 = await createSVG2();
-                svg2.set({ left: 227, top: 209, scaleX: 0.5, scaleY: 0.5 });
-                canvas.add(svg2);  
+                if (svg2) {
+                    svg2.set({ left: 227, top: 209, scaleX: 0.5, scaleY: 0.5 });
+                    canvas.add(svg2);
+                }
                 const handsImage1 = await loadImage(hands.src, { left: 52, top: 5, scaleX: 0.5, scaleY: 0.5 });
                 canvas.add(handsImage1);
-
-                const bodyImage2 = await loadImage(torso.src, { left: 52, top: 444, scaleX: 0.5, scaleY: 0.5, flipY: true });
-                canvas.add(bodyImage2);
                 const svg3 = await createSVG1();
-                svg3.set({ left: 192, top: 627, scaleX: 0.5, scaleY: 0.5, flipY: true });
-                canvas.add(svg3);
+                if (svg3) {
+                    svg3.set({ left: 192, top: 627, scaleX: 0.5, scaleY: 0.5, flipY: true });
+                    canvas.add(svg3);
+                }
                 const svg4 = await createSVG2();
-                svg4.set({ left: 227, top: 615, scaleX: 0.5, scaleY: 0.5, flipY: true });
-                canvas.add(svg4);  
+                if (svg4) {
+                    svg4.set({ left: 227, top: 615, scaleX: 0.5, scaleY: 0.5, flipY: true });
+                    canvas.add(svg4);
+                }
                 const handsImage2 = await loadImage(hands.src, { left: 52, top: 444, scaleX: 0.5, scaleY: 0.5, flipY: true });
                 canvas.add(handsImage2);
                 
@@ -190,8 +199,10 @@ export default function Page({ params }) {
                 canvas.add(qrIconImage);
 
                 const qrSVG = await createQRSVG();
-                qrSVG.set({ left: 210, top: 381, scaleX: 9, scaleY: 9 });
-                canvas.add(qrSVG);
+                if (qrSVG) {
+                    qrSVG.set({ left: 210, top: 381, scaleX: 9, scaleY: 9 });
+                    canvas.add(qrSVG);
+                }
 
                 // Renderizar todo
                 canvas.renderAll();
@@ -202,13 +213,18 @@ export default function Page({ params }) {
 
         loadAndDrawImages();
 
-        return () => canvas.dispose(); // Cleanup
+        return () => {
+            canvas.dispose(); // Cleanup
+        };
     }, []);
 
     // Función para exportar la imagen final
     const exportImage = () => {
         if (!canvasInstance) return;
-        const dataUrl = canvasInstance.toDataURL({ format: 'png' });
+        const dataUrl = canvasInstance.toDataURL({
+            format: 'png',
+            multiplier: 1
+        });
         console.log(dataUrl);
     };
 
