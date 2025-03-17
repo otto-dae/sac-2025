@@ -1,6 +1,7 @@
 'use client'
 
 import Image, { StaticImageData } from 'next/image'
+import { useRouter } from 'next/navigation'
 import React, { useState } from 'react';
 import { parseColor } from "@react-stately/color"
 import { ColorPicker } from '@/components/ui';
@@ -14,7 +15,9 @@ import { patternThumbnails } from '@/components/character-editor/pattern-thumbna
 import torso from '@/assets/character-editor/body/torso.png';
 import hands from '@/assets/character-editor/body/hands.png';
 
+// TODO: use the correct userid
 export default function Page() {
+    const router = useRouter();
     const [selectedCategory, setSelectedCategory] = useState<'head' | 'headwear' | 'clothe'>('head');
     const [semantic, setSemantic] = useState<'white' | 'black'>('white');
     const [color, setColor] = useState(parseColor("#002966"));
@@ -25,13 +28,13 @@ export default function Page() {
         clothe: patternParts.map((part, i) => ({ ...part, thumbnail: patternThumbnails[i].src })),
     }
     const [selectedParts, setSelectedParts] = useState({
-        head: headParts[0].src,
-        headwear: headwearParts[0].src,
-        clothe: patternParts[0].src,
+        head: headParts[0],
+        headwear: headwearParts[0],
+        clothe: patternParts[0],
     })
 
     const handlePartSelection = (category: 'head' | 'headwear' | 'clothe', part: { id: number; src: StaticImageData, thumbnail: StaticImageData }) => {
-        setSelectedParts({ ...selectedParts, [category]: part.src });
+        setSelectedParts({ ...selectedParts, [category]: part });
     }
 
     const categories : { key: 'clothe' | 'head' | 'headwear', src: string }[] = [
@@ -84,7 +87,7 @@ export default function Page() {
                 {selectedParts.headwear && (
                     <div className='absolute -top-3 z-40'>
                         <Image
-                            src={selectedParts.headwear}
+                            src={selectedParts.headwear.src}
                             width={500}
                             height={500}
                             alt='Headwear preview'
@@ -93,7 +96,7 @@ export default function Page() {
                 )}
                 <div className='absolute -top-3 z-30'>
                     <Image
-                        src={selectedParts.head}
+                        src={selectedParts.head.src}
                         width={500}
                         height={500}
                         alt='Head preview'
@@ -102,7 +105,7 @@ export default function Page() {
                 {selectedParts.clothe && (
                     <div className={`absolute -top-3 z-20 ${semantic === 'black' && 'invert'}`}>
                         <Image
-                            src={selectedParts.clothe}
+                            src={selectedParts.clothe.src}
                             width={500}
                             height={500}
                             alt='Pattern preview'
@@ -176,7 +179,7 @@ export default function Page() {
                     <div
                         key={part.id}
                         className={`w-24 h-24 p-3 border-2 rounded-lg grid grid-template-stack items-start cursor-pointer transition-all duration-300 ${
-                            selectedParts[selectedCategory] === part.src
+                            selectedParts[selectedCategory]?.src === part.src
                                 ? 'border-yellow-400 bg-yellow-50'
                                 : 'border-gray-200 hover:border-yellow-300 hover:scale-105'
                         }`}
@@ -193,7 +196,7 @@ export default function Page() {
                             />
                         )}
                         {/* Checkmark */}
-                        {selectedParts[selectedCategory] === part.src && (
+                        {selectedParts[selectedCategory]?.src === part.src && (
                             <div className='h-full flex items-end justify-end fill-green-500 grid-area-stack'>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className='size-6'>
                                     <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
@@ -204,9 +207,13 @@ export default function Page() {
                 ))}
             </div>
             <div className='w-full md:w-2/3 xl:w-1/2 mb-4 flex justify-end'>
-                <button className='w-full md:w-auto flex group items-center justify-center gap-2 bg-blacksac text-white font-bold py-2 px-4 rounded-full uppercase cursor-pointer transition-all duration-200 hover:text-yellow-300'>
+                <button
+                    type='button'
+                    onClick={() => router.push(`/character-editor/${selectedParts.head.id}/${selectedParts.headwear?.id}/${selectedParts.clothe?.id}/${color.toString('hex').split('#')[1]}/${semantic}/276396`)}
+                    className='w-full md:w-auto flex group items-center justify-center gap-2 bg-blacksac text-white font-bold py-2 px-4 rounded-full uppercase cursor-pointer transition-all duration-200 hover:text-yellow-300 hover:scale-105'
+                >
                     ¡Terminé!
-                    <svg className='w-4 h-4 fill-white transition-all duration-200 group-hover:fill-yellow-300' viewBox="0 0 33 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className='w-4 h-4 fill-white transition-all duration-200 group-hover:fill-yellow-300 group-hover:scale-105' viewBox="0 0 33 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M25.5 0.5H7.5V6.5H25.5V0.5Z"/>
                         <path d="M33 6.5H0V37.5H33V6.5Z"/>
                     </svg>
