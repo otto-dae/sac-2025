@@ -11,8 +11,7 @@ interface LegoInputProps {
     onChange?: (newValue: string) => void;
     maxLength?: number;
     className?: string;
-  }
-  
+}
 
 const LegoInput: React.FC<LegoInputProps> = ({
     value = '',
@@ -25,7 +24,6 @@ const LegoInput: React.FC<LegoInputProps> = ({
     const soundRefs = useRef<Howl[]>([]);
     const blockSound = '/media/lego-building-classic-208359.mp3';
 
-    // Inicializar sonidos
     useEffect(() => {
         soundRefs.current = Array.from({ length: 10 }, () =>
             new Howl({
@@ -45,7 +43,7 @@ const LegoInput: React.FC<LegoInputProps> = ({
 
     const handleInputChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
         const key = e.key;
-    
+
         if (key === 'Backspace' && inputValue.length > 0) {
             const newValue = inputValue.slice(0, -1);
             soundRefs.current[Number(inputValue[inputValue.length - 1])].stop();
@@ -59,42 +57,42 @@ const LegoInput: React.FC<LegoInputProps> = ({
         }
     };
 
-  return (
-    <div className={`flex flex-col items-center justify-center w-fit h-fit ${className}`}>
-      {/* Contenedor de números */}
-      <div
-        className={`flex gap-2.5 border-2 border-blacksac rounded-md transform-border ${isFocused ? 'border-blue-400' : ''}`}
-        onClick={() => setIsFocused(true)}
-      >
-        {[...Array(maxLength)].map((_, index) => {
-            const digit = inputValue[index];
-            return (
-            <div key={index} className="w-24 h-32 flex items-center justify-center">
-              {digit ? (
-                <Lottie animationData={animations[Number(digit)]} loop={false} autoplay />
-              ) : index === inputValue.length ? (
-                <Lottie animationData={cursorAnimation} loop autoplay />
-              ) : (
-                <div />
-              )}
+    return (
+        <div className={`flex flex-col items-center justify-center w-full h-auto ${className}`}>
+            {/* Contenedor de números */}
+            <div
+                className={`flex gap-1 md:gap-2.5 border-2 border-blacksac rounded-md transition-all ${isFocused ? 'border-blue-400' : ''}`}
+                onClick={() => setIsFocused(true)}
+            >
+                {[...Array(maxLength)].map((_, index) => {
+                    const digit = inputValue[index];
+                    return (
+                        <div key={index} className="w-[12vw] max-w-24 h-[16vw] max-h-32 flex items-center justify-center">
+                            {digit ? (
+                                <Lottie animationData={animations[Number(digit)]} loop={false} autoplay />
+                            ) : index === inputValue.length ? (
+                                <Lottie animationData={cursorAnimation} loop autoplay />
+                            ) : (
+                                <div />
+                            )}
+                        </div>
+                    );
+                })}
             </div>
-          );
-        })}
-      </div>
 
-      {/* Input oculto */}
-      <input
-        type="text"
-        maxLength={maxLength}
-        onKeyDown={handleInputChange}
-        value={inputValue.join('')}
-        readOnly
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        className="absolute w-157 h-32 opacity-0"
-      />
-    </div>
-  );
+            {/* Input oculto */}
+            <input
+                type="text"
+                maxLength={maxLength}
+                onKeyDown={handleInputChange}
+                value={inputValue.join('')}
+                readOnly
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
+                className="absolute w-[78vw] max-w-157 h-[16vw] max-h-32 opacity-0"
+            />
+        </div>
+    );
 }
 
 export default LegoInput;
