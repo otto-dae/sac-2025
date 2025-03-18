@@ -137,7 +137,7 @@ export default function Page({ params }: { params: Params }) {
             }
         };
 
-        const loadAndAddImage = async (src: string, options: {} | undefined) => {
+        const loadAndAddImage = async (src: string, options: object | undefined) => {
             const img = await loadImage(src, options);
             canvas.add(img);
         };
@@ -149,16 +149,6 @@ export default function Page({ params }: { params: Params }) {
         };
     }, []);
 
-    // Función para exportar la imagen final
-    const exportImage = () => {
-        if (!canvasInstance) return;
-        const dataUrl = canvasInstance.toDataURL({
-            format: 'png',
-            multiplier: 1
-        });
-        console.log(dataUrl);
-    };
-
     const downloadImage = (dataUrl: string) => {
         const a = document.createElement('a');
         a.href = dataUrl;
@@ -167,8 +157,8 @@ export default function Page({ params }: { params: Params }) {
     }
 
     return (
-        <div className='p-4 gap-4 bg-yellowsac flex flex-col items-center'>
-            <button onClick={() => downloadImage(canvasInstance?.toDataURL({ format: 'png', multiplier: 1 }) || '')} className="cursor-pointer px-4 py-2 rounded-2xl bg-blacksac text-white">
+        <div className='p-5 gap-5 bg-yellowsac flex flex-col items-center'>
+            <button onClick={() => downloadImage(canvasInstance?.toDataURL({ format: 'png', multiplier: 1 }) || '')} className="w-full md:w-fit cursor-pointer px-4 py-2 rounded-2xl bg-blacksac text-white">
                 Descargar Imagen
             </button>
 
