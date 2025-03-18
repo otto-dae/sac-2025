@@ -1,0 +1,1 @@
+export const colorVars = ["bg-redsac", "bg-bluesac", "bg-greensac", "bg-yellowsac"];
