@@ -1,25 +1,24 @@
+"use client";
+
+import React from "react";
 import Example from "../components/viewqr/SAC";
-import { jsPDF } from "jspdf";
-
-
-const doc = new jsPDF();
-doc.text("Hello world!", 10, 10);
-doc.save("a4.pdf");
 
 function BodyComponent() {
   return (
-    <h1 className="text-3xl font-bold">
-      <div className="absolute inset-0 bg-cover bg-no-repeat" style={{ backgroundImage: "url('/fondo.svg')", backgroundPosition: "bottom" }} />
-      <Example />
+    <div className="relative min-h-screen flex flex-col items-center justify-center">
+      <div className="absolute inset-0 bg-cover bg-no-repeat" />
 
-    </h1>
+      <Example />
+    </div>
   );
 }
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
-    <main>
-      <BodyComponent /> {/* Agregamos BodyComponent aquí */}
+    <main className="relative min-h-screen flex flex-col items-center justify-center">
+      <BodyComponent />
     </main>
   );
-}
+};
+
+export default Home;
