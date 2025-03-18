@@ -245,12 +245,14 @@
     border-radius: 4px;
   }
 }
-  --grid-rows-28: repeat(26, minmax(10%, 600px));
-  --grid-rows-14: repeat(14, minmax(0, 1fr));
-  --row-span-14: span 14 / span 14;
-
-  --animate-spining: spin 1s ease-in-out;
-  --animate-negSpining: spinNeg 1s ease-in-out;
+  :root {
+    --grid-rows-28: repeat(26, minmax(10%, 600px));
+    --grid-rows-14: repeat(14, minmax(0, 1fr));
+    --row-span-14: span 14 / span 14;
+  
+    --animate-spining: spin 1s ease-in-out;
+    --animate-negSpining: spinNeg 1s ease-in-out;
+  }
 
   @keyframes spinNeg {
     to {
@@ -263,7 +265,6 @@
       transform: rotateX(90deg);
     }
   }
-}
 
 #schedule-scroll::-webkit-scrollbar {
   background-color: white;
