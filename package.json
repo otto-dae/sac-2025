@@ -17,6 +17,8 @@
     "drizzle-orm": "^0.39.3",
     "fabric": "^6.6.1",
     "gsap": "^3.12.7",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
     "howler": "^2.2.4",
     "justd-icons": "^1.10.25",
     "lottie-react": "^2.4.1",
