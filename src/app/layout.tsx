@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import NavbarContainer from "@/components/navbar/NavbarContainer";
+import LenisScrollProvider from "@/components/providers/lenis-provider";
 
 export const metadata: Metadata = {
   title: "SAC-2025",
@@ -13,16 +14,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
-    <html lang="en" className="scroll-smooth">
-      <body>
-        <NavbarContainer />
-        {children}
+    <html lang="en" className=" overflow-x-hidden">
+      <body className="bg-[auto_80%] bg-repeat bg-[url('../../public/backgroundLanding.jpg')]">
+        <LenisScrollProvider>
+          <NavbarContainer />
+          {children}
+        </LenisScrollProvider>
       </body>
     </html>
   );
-
 }
-
-
