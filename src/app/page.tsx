@@ -21,7 +21,7 @@ export default function Home() {
   // }, []);
 
   return (
-    <div className=" overflow-hidden bg-[auto_50%] bg-repeat bg-whitesac bg-[url('../../public/backgroundLanding.jpg')]">
+    <div className=" overflow-hidden">
       {/* {isLoading ? (
         <LegoWall />
       ) : ( */}
