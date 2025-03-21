@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import NavbarContainer from "@/components/navbar/NavbarContainer";
-import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "SAC-2025",
@@ -20,7 +19,6 @@ export default function RootLayout({
       <body>
         <NavbarContainer />
         {children}
-        <Footer/>
       </body>
     </html>
   );
