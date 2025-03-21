@@ -57,6 +57,10 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
+  --grid-rows-28: repeat(26, minmax(10%, 600px));
+  --grid-rows-14: repeat(14, minmax(0, 1fr));
+  --row-span-14: span 14 / span 14;
+
   /* SAC Colors */
   --color-redsac: #F75E63;
   --color-bluesac: #42CDFF;
@@ -66,30 +70,10 @@
   --color-blacksac: #121215;
   --color-constrastwhitesac: #FFFFFF;
   --color-constrastblacksac: #000000;
+
 }
 
 @layer utilities {
-  .scrollbar::-webkit-scrollbar {
-    width: 12px;
-    height: 20px;
-  }
-
-  .scrollbar::-webkit-scrollbar-track {
-    border-radius: 100vh;
-    /* background: hsl(0, 0%, 85%); */
-  }
-
-  .scrollbar::-webkit-scrollbar-thumb {
-    background: rgb(0, 0, 0);
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 100vh;
-  }
-
-  .scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgb(66,205,255);
-    background: linear-gradient(0deg, rgba(66,205,255,1) 0%, rgba(197,240,111,1) 33%, rgba(255,223,98,1) 66%, rgba(247,94,99,1) 100%);
-  }
-
   .grid-template-stack {
     grid-template-areas: stack;
   }
@@ -231,86 +215,41 @@
     background-color: var(--bg);
     color: var(--fg);
   }
-
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 4px;
-  }
-}
-  :root {
-    --grid-rows-28: repeat(26, minmax(10%, 600px));
-    --grid-rows-14: repeat(14, minmax(0, 1fr));
-    --row-span-14: span 14 / span 14;
-  
-    --animate-spining: spin 1s ease-in-out;
-    --animate-negSpining: spinNeg 1s ease-in-out;
-  }
-
-  @keyframes spinNeg {
-    to {
-      transform: rotateX(-90deg);
-    }
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotateX(90deg);
-    }
-  }
-
-#schedule-scroll::-webkit-scrollbar {
-  background-color: white;
-}
-
-#schedule-scroll::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: #121215;
-}
-
-#schedule-scroll::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: rgb(247, 94, 99);
-  background: linear-gradient(
-    90deg,
-    rgba(247, 94, 99, 1) 25%,
-    rgba(66, 205, 255, 1) 25%,
-    rgba(66, 205, 255, 1) 50%,
-    rgba(197, 240, 111, 1) 50%,
-    rgba(214, 235, 107, 1) 75%,
-    rgba(255, 223, 98, 1) 75%,
-    rgba(255, 223, 98, 1) 100%
-  );
 }
 
 @font-face {
   font-family: "Cera Pro";
-  src: url("/fonts/Fontspring-DEMO-cerapro-medium.woff") format("woff");
+  src: url("/fonts/cera-pro/CeraPro-Medium.woff") format("woff");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Cera Pro";
-  src: url("/fonts/Fontspring-DEMO-cerapro-bold.woff") format("woff");
+  src: url("/fonts/cera-pro/CeraPro-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Cera Pro";
-  src: url("/fonts/Fontspring-DEMO-cerapro-light.woff") format("woff");
+  src: url("/fonts/cera-pro/CeraPro-Regular.woff") format("woff");
   font-weight: 300;
   font-style: normal;
+}
+
+@font-face {
+  font-family: "Cera Pro";
+  src: url("/fonts/cera-pro/CeraPro-Thin.woff") format("woff");
+  font-weight: 300;
+  font-style: extralight;
 }
 
 body {
   font-family: "Cera Pro", sans-serif;
 }
+
+html { font-size: calc(0.625rem + 0.41666666666666663vw); }
+@media screen and (max-width:1920px) { html { font-size: calc(0.625rem + 0.41666666666666674vw); } }
+@media screen and (max-width:1440px) { html { font-size: calc(0.8126951092611863rem + 0.20811654526534862vw); } }
+@media screen and (max-width:479px) { html { font-size: calc(0.7494769874476988rem + 0.8368200836820083vw); } }
