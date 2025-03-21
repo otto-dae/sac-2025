@@ -7,6 +7,7 @@ import scheduleData from "../../testdata/schedule.json";
 import ErrorComponent from "../error/ErrorComponent";
 import Block from "./Block";
 import ScheduleButton from "./ScheduleButton";
+import styles from "./Schedule.module.css"
 
 const Schedule = () => {
   const data = scheduleData as ScheduleDay[];
@@ -41,9 +42,10 @@ const Schedule = () => {
   };
 
   return (
-    <section>
+    <section id="schedule">
       {currentDay?.day !== undefined || currentDay?.events !== undefined ? (
-        <div className="flex flex-col w-full p-2 justify-center items-center">
+        <div className="flex flex-col w-full p-2 justify-center items-center gap-5 mt-20">
+          <h1 className=" text-7xl font-extralight tracking-wider">HORARIOS</h1>
           <div className="flex flex-row row-span-2 w-full p-1 items-center h-fit justify-around">
             {data.map((el, index) => {
               return (
@@ -60,9 +62,9 @@ const Schedule = () => {
             })}
           </div>
 
-          <div id="schedule-scroll" className=" w-full self-start overflow-x-scroll lg:overflow-clip">
+          <div className={`w-full self-start overflow-x-scroll xl:overflow-clip ${styles.scheduleScroll}`}>
             <div
-              className={`grid items-center lg:w-full w-[1500px] h-full mt-5 grid-rows-10 p-5 grid-cols-auto`}
+              className={`grid items-center xl:w-full w-[1500px] h-full mt-5 grid-rows-10 p-5 grid-cols-auto`}
             >
               {currentDay.events.map((el, index) => {
                 return <Block key={index} hour={el.time} />;
@@ -74,14 +76,14 @@ const Schedule = () => {
                     return (
                       <div
                         key={subindex}
-                        className={`text-center text-wrap w-fit m-1 p-3 justify-center flex flex-col ${
+                        className={`text-center text-wrap w-fit m-1 p-2 justify-center flex flex-col ${
                           colorVars[index % 4]
                         }`}
                         style={{
                           gridRow: `${index + 1} / span ${item.duration}`,
                         }}
                       >
-                        <div className={`  w-full h-full content-center`}>
+                        <div className="w-full h-full content-center">
                           <h3 className=" font-medium">{item.title}</h3>
                           <p className="bg-whitesac rounded-4xl font-bold">
                             {item.place}
