@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import LegoWall from "@/components/loading/LegoWall";
 import Schedule from "@/components/schedule/Schedule";
 import Speakers from "@/components/speakers/Speakers";
 import Hero from "@/components/hero/Hero";
 import About from "@/components/about/About";
+import Footer from "@/components/footer/Footer";
 
 
 export default function Home() {
@@ -30,6 +29,7 @@ export default function Home() {
           <About/>
           <Schedule />
           <Speakers/>
+          <Footer/>
         </main>
         {/* )} */}
     </div>

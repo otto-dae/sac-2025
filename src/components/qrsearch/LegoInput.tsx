@@ -95,6 +95,7 @@ const LegoInput: React.FC<LegoInputProps> = ({
 
       {/* Input oculto */}
       <input
+        autoFocus
         type="text"
         maxLength={maxLength}
         onKeyDown={handleInputChange}

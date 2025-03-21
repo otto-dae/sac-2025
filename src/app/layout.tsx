@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import NavbarContainer from "@/components/navbar/NavbarContainer";
-import Footer from "@/components/footer/Footer";
 import LenisScrollProvider from "@/components/providers/lenis-provider";
 
 export const metadata: Metadata = {
@@ -21,7 +20,6 @@ export default function RootLayout({
         <LenisScrollProvider>
           <NavbarContainer />
           {children}
-          <Footer />
         </LenisScrollProvider>
       </body>
     </html>
