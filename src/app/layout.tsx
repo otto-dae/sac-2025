@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import NavbarContainer from "@/components/navbar/NavbarContainer";
+import Footer from "@/components/footer/Footer";
 
 export const metadata: Metadata = {
   title: "SAC-2025",
@@ -15,11 +16,11 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en" className="scroll-smooth font-[Cera-pro] relative">
+    <html lang="en" className="scroll-smooth">
       <body>
-        <div className="absolute inset-0 bg-[url(/backgroundLanding.jpeg)] bg-cover bg-center opacity-25 z-[-1]" />
         <NavbarContainer />
         {children}
+        <Footer/>
       </body>
     </html>
   );
