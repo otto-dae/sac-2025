@@ -34,17 +34,16 @@ export default function Record() {
     <div className="relative min-h-screen w-screen flex flex-col items-center justify-center">
       {/* Imagen de fondo */}
       <Image
-  src="/attendance.png"
-  alt="Fondo de asistencia"
-  layout="fill"
-  objectFit="cover"
-  className="absolute z-1 w-full h-full mt-50"
-  
-/>
-
+        src="/Attendance.png"
+        alt="Fondo de asistencia"
+        layout="fill"
+        objectFit="cover"
+        className="absolute z-1 w-full h-full mt-50"
+        
+      />
 
       {/* Contenedor de las manos */}
-      <div className="flex w-full justify-between absolute z-2 mt-[-15%] px-4 sm:px-8 md:px-16 lg:px-45">
+      <div className="flex w-full justify-between absolute z-2 mt-[-70%] px-4 sm:px-8 md:px-16 lg:px-45 lg:mt-[-18%] ">
         <div className="w-[120px] sm:w-[150px] md:w-[177px] h-[60px] sm:h-[70px] md:h-[84px] rounded-[23px] border-[10px] border-[#E79344] bg-[#FFDF62]" />
         <div className="w-[120px] sm:w-[150px] md:w-[177px] h-[60px] sm:h-[70px] md:h-[84px] rounded-[23px] border-[10px] border-[#E79344] bg-[#FFDF62]" />
       </div>
@@ -63,19 +62,17 @@ export default function Record() {
           <AttendanceShett width={getSvgWidth()} />
           
           {/* Texto sobre el SVG */}
-          <span className="absolute top-[20%] text-center xs:text-xs sm:text-[20px] md:text-[24px] lg:text-[2rem] z-2 w-fit">
-  GENERAR HOJA DE ASISTENCIAS
+          <span className="absolute top-[40%] text-center xs:text-xs sm:text-[20px] md:text-[24px] lg:text-[2rem] z-2 w-fit lg:top-[25%]">
+            GENERAR HOJA DE ASISTENCIAS
 
-  {/* Línea de degradado debajo del texto */}
-  <div className="absolute left-1/2 bottom-[-4px] h-[4px] w-full bg-[linear-gradient(90deg,#F75E63_0%,#F75E63_25%,#42CDFF_25%,#42CDFF_50%,#C5F06F_50%,#C5F06F_75%,#FFDF62_75%,#FFDF62_100%)] transform -translate-x-1/2" />
+            {/* Línea de degradado */}
+            <div className="absolute left-1/2 bottom-[-4px] h-[4px] w-full bg-[linear-gradient(90deg,#F75E63_0%,#F75E63_25%,#42CDFF_25%,#42CDFF_50%,#C5F06F_50%,#C5F06F_75%,#FFDF62_75%,#FFDF62_100%)] transform -translate-x-1/2" />
 
-  {/* Modal */}
-  <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 z-2 w-full">
-    <LegoModal />
-  </div>
-</span>
-
-
+            {/* Modal */}
+            <div className="absolute top-[-100%] left-[50%] transform -translate-x-1/2 z-2 w-full lg:top-[60%]">
+              <LegoModal />
+            </div>
+          </span>
         </div>
       </div>
     </div>
