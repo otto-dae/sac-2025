@@ -43,24 +43,24 @@ export default function Record() {
     } else if (screenWidth >= 640) {
       return screenWidth * 0.3;
     } else {
-      return screenWidth * 0.8;
+      return screenWidth * 0.75; 
     }
   };
 
   return (
-    <div className="relative w-screen h-screen flex flex-col items-center justify-center">
+    <div className="relative min-h-screen w-screen flex flex-col items-center justify-center">
       {/* Imagen de fondo */}
       <Image
-        src="/attendance.png"
+        src="/Attendance.png"
         alt="Fondo de asistencia"
         layout="fill"
         objectFit="cover"
-        className="absolute z-1 mt-50"
+        className="absolute z-1 w-full h-full mt-50"
+        
       />
 
       {/* Contenedor de las manos */}
-      <div className="flex w-full justify-between absolute top-[25%] px-4 sm:px-8 md:px-16 lg:px-45 z-2">
-        {/* Mano izquierda */}
+      <div className="flex w-full justify-between absolute z-2 mt-[-70%] px-4 sm:px-8 md:px-16 lg:px-45 lg:mt-[-18%] ">
         <div className="w-[120px] sm:w-[150px] md:w-[177px] h-[60px] sm:h-[70px] md:h-[84px] rounded-[23px] border-[10px] border-[#E79344] bg-[#FFDF62]" />
 
         {/* Mano derecha */}
@@ -92,27 +92,26 @@ export default function Record() {
         </div>
       </div>
 
-      {/* Contenedor para el SVG y el texto */}
-      <div className="absolute top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50 flex flex-col items-center md:top-[55%] lg:top-[60%] lg:left-[47%]">
-        <AttendanceShett width={getSvgWidth()} />
+      {/* Contenedor para el SVG, el texto y el modal */}
+      <div className="flex flex-col items-center justify-center z-2 mt-[140px] relative">
+        {/* Contenedor SVG con el modal dentro */}
+        <div className="relative w-full flex justify-center items-center mt-50">
+          {/* El SVG */}
+          <AttendanceShett width={getSvgWidth()} />
+          
+          {/* Texto sobre el SVG */}
+          <span className="absolute top-[40%] text-center xs:text-xs sm:text-[20px] md:text-[24px] lg:text-[2rem] z-2 w-fit lg:top-[25%]">
+            GENERAR HOJA DE ASISTENCIAS
 
-        {/* Texto alineado al centro */}
-        <p className="absolute top-[40%] sm:top-[25%] md:top-[35%] lg:top-[30%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50 text-center xs:text-[2px] text-md sm:text-[20px] lg:text-[2rem] mt-2">
-          GENERAR HOJA DE ASISTENCIAS
-        </p>
+            {/* Línea de degradado */}
+            <div className="absolute left-1/2 bottom-[-4px] h-[4px] w-full bg-[linear-gradient(90deg,#F75E63_0%,#F75E63_25%,#42CDFF_25%,#42CDFF_50%,#C5F06F_50%,#C5F06F_75%,#FFDF62_75%,#FFDF62_100%)] transform -translate-x-1/2" />
 
-        {/* Línea con degradado */}
-        <div
-          className="absolute top-[50%] sm:top-[35%] md:top-[45%] lg:top-[45%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 z-50 w-[250px] sm:w-[350px] md:w-[400px] lg:w-[412px] h-[4px] flex-shrink-0 mt-2"
-          style={{
-            background: "linear-gradient(90deg, #FFDF62 25%, #C5F06F 25%, #C5F06F 50%, #42CDFF 50%, #42CDFF 75%, #F75E63 75%)",
-          }}
-        />
-      </div>
-
-      {/* Contenedor para el modal */}
-      <div className="absolute top-[-10%] left-[50%] transform -translate-x-1/2 z-60 w-[240px] sm:w-[80%] md:w-[53%] lg:w-[60%] md:top-[-10%] lg:top-[-1%] lg:left-[47%]">
-        <LegoModal />
+            {/* Modal */}
+            <div className="absolute top-[-100%] left-[50%] transform -translate-x-1/2 z-2 w-full lg:top-[60%]">
+              <LegoModal />
+            </div>
+          </span>
+        </div>
       </div>
     </div>
   );

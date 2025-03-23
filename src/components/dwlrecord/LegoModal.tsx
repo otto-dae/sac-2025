@@ -17,16 +17,17 @@ const LegoModal = () => {
   };
 
   return (
-    <div className="flex flex-col justify-end items-center z-50 h-screen relative">
-      <div className="flex flex-col justify-end items-center w-full h-full mb-70">
-        <input
-          type="number"
-          value={expediente}
-          onChange={(e) => setExpediente(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && openModal()}
-          placeholder="Ingresa tu expediente..."
-          className="border-1 border-gray-700 rounded-3xl p-1 md:p-2 w-full max-w-md focus:outline-none placeholder:text-xl placeholder:p-3"
-        />
+    <div className="flex flex-col justify-start items-center z-50 h-screen relative">
+      <div className="flex flex-col justify-start items-center w-full h-full mt-20">
+      <input
+  type="number"
+  value={expediente}
+  onChange={(e) => setExpediente(e.target.value)}
+  onKeyDown={(e) => e.key === "Enter" && openModal()}
+  placeholder="Ingresa tu expediente..."
+  className="border-1 border-gray-700 rounded-3xl p-1 md:p-2 w-[90%] max-w-[500px] focus:outline-none placeholder:text-lg sm:placeholder:text-base md:placeholder:text-xl placeholder:p-3 text-lg sm:text-base md:text-xl"
+/>
+
       </div>
 
       {isOpen && (
