@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { StaticCanvas, FabricText } from 'fabric';
 
 import qrbg from '@/assets/QRCard.png';
@@ -15,34 +15,28 @@ import hands from '@/assets/character-editor/body/hands.png';
 import { loadImage, applyInvertFilter, createSVG, createQRSVG, SVG_SLEEVE, SVG_TORSO } from '@/utils/canvasUtils';
 import { GlareCard } from '@/components/ui/glare-card';
 
-interface Params {
-    qrgenerator: string[];
-}
-
-export default function Page({ params }: { params: Params }) {
+export default function Page() {
     const scaleFactor = 0.75;
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const [canvasInstance, setCanvasInstance] = useState<StaticCanvas | null>(null);
-    const router = useRouter()
-    const { qrgenerator } = React.use(params); // Obtener el slug de la URL
+    const params = useParams();
+    const qrgenerator = params.qrgenerator as string[];
     const [headwearId, headId, patternId, playerColor, patternTone, userId] = qrgenerator;
 
     useEffect(() => {
-        const partCategories = [headParts, headwearParts, patternParts]; // Orden de partes
+        const partCategories = [headParts, headwearParts, patternParts];
         const selectedImages = [
-            partCategories[0][Number(headwearId)], // headwear
-            partCategories[1][Number(headId)],     // head
-            partCategories[2][Number(patternId)],  // pattern
+            partCategories[0][Number(headwearId)],
+            partCategories[1][Number(headId)],
+            partCategories[2][Number(patternId)],
         ];
 
         if (!canvasRef.current) return;
 
-        // Crear el canvas
         const canvas = new StaticCanvas(canvasRef.current, {
             width: 594 * scaleFactor,
             height: 942 * scaleFactor,
         });
-
         // Cargar y agregar las imágenes al canvas
         const loadAndDrawImages = async () => {
             try {
@@ -123,7 +117,7 @@ export default function Page({ params }: { params: Params }) {
 
                 // QR
                 await loadAndAddImage(qricon.src, { left: -(5 * scaleFactor), top: 0, scaleX: (1 * scaleFactor), scaleY: (1 * scaleFactor) });
-                const qrSVG = await createQRSVG(userId);
+                const qrSVG = await createQRSVG(Number(userId));
                 if (qrSVG) {
                     qrSVG.set({ left: (210 * scaleFactor), top: (381 * scaleFactor), scaleX: (9 * scaleFactor), scaleY: (9 * scaleFactor) });
                     canvas.add(qrSVG);
@@ -148,7 +142,7 @@ export default function Page({ params }: { params: Params }) {
         return () => {
             canvas.dispose(); // Cleanup
         };
-    }, []);
+    }, [headId, headwearId, patternId, patternTone, playerColor, userId]);
 
     const downloadImage = (dataUrl: string) => {
         const a = document.createElement('a');
