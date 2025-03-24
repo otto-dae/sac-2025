@@ -20,11 +20,11 @@ export default function Home() {
   // }, []);
 
   return (
-    <div className=" overflow-hidden">
+    <div className=" overflow-hidden ">
       {/* {isLoading ? (
         <LegoWall />
       ) : ( */}
-        <main className="pt-22 bg-whitesac/50">
+        <main className="pt-22 bg-[auto_80%] bg-repeat bg-[url('../../public/backgroundLanding.jpg')]">
           <Hero />
           <About/>
           <Schedule />

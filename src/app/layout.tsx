@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className=" overflow-x-hidden">
-      <body className="bg-[auto_80%] bg-repeat bg-[url('../../public/backgroundLanding.jpg')]">
+      <body className="">
           <Navbar />
           {children}
       </body>
