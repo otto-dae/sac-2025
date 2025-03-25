@@ -11,6 +11,7 @@ import generateQRCode from '@/components/character-editor/CreateQR';
 export const loadImage = (src: string, options = {}): Promise<FabricImage> => {
     return new Promise<FabricImage>((resolve, reject) => {
         const imgElement = new window.Image();
+        imgElement.crossOrigin = 'anonymous';
         imgElement.src = src;
         imgElement.onload = () => resolve(new FabricImage(imgElement, options));
         imgElement.onerror = () => reject(`Error al cargar la imagen: ${src}`);

@@ -14,7 +14,7 @@ export default function Page() {
   const [code, setCode] = useState('');
 
   const codeHandler = (code: string) => {
-    router.push(`/character-editor`);
+    router.push(`/charactereditor/${code}`);
     return console.log(code);
   }
 
