@@ -14,6 +14,9 @@ export async function GET(
     .innerJoin(students, eq(students.expediente, studentsToWorkshops.studentId))
     .innerJoin(workshops, eq(workshops.id, studentsToWorkshops.workshopId))
     .where(eq(studentsToWorkshops.studentId, parseInt(exp)))
+  if (!registrarOfStudent[0]?.students) {
+    return NextResponse.json({ error: "Student not found" }, { status: 404 });
+  }
   const response = {
     student: registrarOfStudent[0].students.nombre,
     exp: registrarOfStudent[0].students.expediente,
