@@ -21,7 +21,6 @@ const LegoModal = () => {
         setIsOpen(true);  // Abre el modal si el expediente es correcto
       } else {
         setError("Expediente no encontrado");
-        setIsOpen(true);  // Abre el modal también cuando hay error
         setExpediente(""); // Reset input
       }
     }, 2000);
@@ -45,7 +44,7 @@ const LegoModal = () => {
             placeholder="Ingresa tu expediente..."
             className="border-1 border-gray-700 rounded-3xl p-2 w-full focus:outline-none text-lg md:text-xl placeholder-gray-400"
           />
-          {error && <p className="text-red-500 mt-1">{error}</p>}
+          {error && <p className="text-red-500 mt-2 lg:mt-5 text-md lg:text-sm">{error}</p>}
         </>
       ) : (
         <Image
