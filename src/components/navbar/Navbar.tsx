@@ -50,9 +50,9 @@ const Navbar: React.FC = () => {
               styling={`md:border-2 md:border-whitesac md:rounded-full md:px-6 md:py-1 text-white`} 
               imageUrl={"/QRLegoHead.svg"} 
               linkUrl={"/expsearch"} 
-              tStyling={"hidden md:block text-xl font-medium font-['Cera_Pro'] leading-normal"} 
-              width={34} 
-              height={82}
+              tStyling={" hidden md:block text-xl font-medium font-['Cera_Pro'] leading-normal"} 
+              width={32} 
+              height={80}
             />
           </div>
         </div>
