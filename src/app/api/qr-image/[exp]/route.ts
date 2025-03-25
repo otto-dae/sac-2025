@@ -52,7 +52,7 @@ export async function POST(
     }
     const studentQr = await db
       .insert(students)
-      .values({expediente: parseInt(exp), nombre: 'Alejandro', lego_image: body.lego_image})
+      .values({expediente: parseInt(exp), nombre: body.nombre, lego_image: body.lego_image})
     const response = {
       message: "Image uploaded",
       data: studentQr
