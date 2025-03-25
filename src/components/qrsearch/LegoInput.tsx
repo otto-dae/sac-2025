@@ -1,5 +1,3 @@
-"use client";
-
 import { useRef, useState, useEffect } from "react";
 import Lottie from "lottie-react";
 import animations from "../animations";
@@ -21,10 +19,19 @@ const LegoInput: React.FC<LegoInputProps> = ({
 }) => {
   const [inputValue, setInputValue] = useState<string[]>(value.split(""));
   const [isFocused, setIsFocused] = useState(false);
+  const [isClient, setIsClient] = useState(false);  // New state to check if we are on the client
   const soundRefs = useRef<Howl[]>([]);
   const blockSound = "/media/lego-building-classic-208359.mp3";
 
+  // Check if the code is running on the client side
   useEffect(() => {
+    setIsClient(true); // Set to true once mounted on the client
+  }, []);
+
+  // Handle sound effects setup only on the client side
+  useEffect(() => {
+    if (!isClient) return; // Avoid running this on the server
+
     soundRefs.current = Array.from(
       { length: 10 },
       () =>
@@ -37,7 +44,7 @@ const LegoInput: React.FC<LegoInputProps> = ({
     return () => {
       soundRefs.current.forEach((sound) => sound.unload());
     };
-  }, []);
+  }, [isClient]);
 
   useEffect(() => {
     setInputValue(value.split(""));
@@ -63,10 +70,12 @@ const LegoInput: React.FC<LegoInputProps> = ({
     }
   };  
 
+  if (!isClient) {
+    return null; // Prevent rendering on the server
+  }
+
   return (
-    <div
-      className={`flex flex-col items-center justify-center w-full h-auto ${className}`}
-    >
+    <div className={`flex flex-col items-center justify-center w-full h-auto ${className}`}>
       {/* Contenedor de números */}
       <div
         className={`flex gap-1 md:gap-2.5 border-2 border-blacksac rounded-md transition-all ${
