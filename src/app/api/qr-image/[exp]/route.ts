@@ -35,19 +35,24 @@ export async function POST(
 ){
   try {
     const {exp} = await params;
+    const examplePayload = {
+      nombre: "Dummy",
+      lego_image: "base64image"
+    };
     const body = await request.json();
     const isNotValidName = !body.nombre || typeof body.nombre !== 'string',
       isNotValidImage = (!body.lego_image || typeof body.lego_image !== 'string');
-    if (isNotValidName || isNotValidImage) {
+    if (isNotValidName) {
       return NextResponse.json(
-	{ error: "Bad Request",
-	  examplePayload: {
-	    nombre: "Example",
-	    lego_image: "base64image"
-	  }
-	},
-	{ status: 400 }
+	{error: "Field must be nombre string", example: examplePayload},
+	{status: 400}
       );
+    }
+    if (isNotValidName)	{
+      return NextResponse.json(
+	{error: "Field must be lego_image", example: examplePayload},
+	{status: 400}
+      )
     }
     const studentQr = await db
       .insert(students)
