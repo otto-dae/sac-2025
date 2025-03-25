@@ -1,33 +1,61 @@
 import React from "react";
+import Image from "next/image"; 
 
 function App() {
   return (
     <div className="page">
-      <div className="top-image" style={{ width: "100%", height: "auto" }}>
-        <img src={'/bloques.png'} alt="Imagen Superior" style={{ width: "100%", height: "auto" }} />
+      <div className="top-image w-full">
+        <Image 
+          src="/bloques.png" 
+          alt="Imagen Superior" 
+          layout="responsive" 
+          width={1920} 
+          height={1080} 
+          className="w-full h-auto"
+        />
       </div>
 
-      <div className="content" style={{display: "flex", flexDirection: "column", minHeight:"100vh"}}>
+      <div className="content flex flex-col min-h-screen">
         
-        <div className="logo" style={{ position: "absolute", top: 60, left: 30, width: "26%", height: "auto" }}>
-        <img src={'/Logo.png'} alt="logo" style={{ width: "100%", height: "auto" }} />
+        <div className="logo absolute top-16 left-8 w-1/4">
+          <Image 
+            src="/Logo.png" 
+            alt="logo" 
+            layout="responsive" 
+            width={400} 
+            height={200} 
+            className="w-full h-auto"
+          />
         </div>
 
-        <div className="perfil" style={{ position: "absolute", top: 80, left: 310, width: "25%", height: "auto" }}>
-        <img src={'/perfil.png'} alt="perfil" style={{ width: "100%", height: "auto" }} />
-        <p style={{}}>000000</p>
+        <div className="perfil absolute top-20 left-80 w-1/4">
+          <Image 
+            src="/perfil.png" 
+            alt="perfil" 
+            layout="responsive" 
+            width={400} 
+            height={400} 
+            className="w-full h-auto"
+          />
+          <p>000000</p>
         </div>
 
-        <h1>Contenido Central</h1>
+        <h1 className="text-xl mt-32">Contenido Central</h1>
         <p>Aquí va el contenido principal de la página.</p>
       </div>
 
-      <div className="bottom-image" style={{ width: "100%", height: "auto" }}>
-        <img src={'/bloques2.png'} alt="Imagen Inferior" style={{ width: "100%", height: "auto" }} />
+      <div className="bottom-image w-full">
+        <Image 
+          src="/bloques2.png" 
+          alt="Imagen Inferior" 
+          layout="responsive" 
+          width={1920} 
+          height={1080} 
+          className="w-full h-auto"
+        />
       </div>
     </div>
   );
 }
 
 export default App;
-

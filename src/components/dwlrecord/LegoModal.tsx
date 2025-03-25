@@ -14,11 +14,10 @@ const LegoModal = () => {
     setLoading(true);
     setError("");
   
-    // Simular llamada al servidor (reemplazar con fetch real)
     setTimeout(() => {
       setLoading(false);
       if (expediente === "123") {
-        setIsOpen(true);  // Abre el modal si el expediente es correcto
+        setIsOpen(true);  
       } else {
         setError("Expediente no encontrado");
         setExpediente(""); // Reset input
@@ -30,7 +29,6 @@ const LegoModal = () => {
     setIsOpen(false);
     setExpediente("");
   };
-  
 
   return (
     <div className="flex flex-col justify-center items-center w-full mt-5 lg:mt-15">
@@ -56,18 +54,15 @@ const LegoModal = () => {
         />
       )}
 
-{isOpen && (
+      {isOpen && (
         <div className="fixed inset-0 backdrop-blur-xs bg-opacity-50 flex justify-center items-center z-50 overflow-hidden">
           <div className="rounded-3xl relative min-h-[600px] min-w-[300px] bg-gradient-to-r from-[#f87171] from-50% to-white to-50% overflow-hidden sm:min-h-[300px] sm:min-w-[500px] md:min-h-[400px] md:min-w-[700px]">
-
-
-            <div className="w-[140px] h-[140px] absolute top-24  left-0 z-20 ml-[2px]
-            sm:top-0 sm:p-2
-            md:p-0 md:w-fit md:h-fit md:mt-[30px] md:ml-[10px]">
-              <img src="/TextBubbleModal.svg"></img>
+            
+            <div className="w-[140px] h-[140px] absolute top-24 left-0 z-20 ml-[2px] sm:top-0 sm:p-2 md:p-0 md:w-fit md:h-fit md:mt-[30px] md:ml-[10px]">
+              <Image src="/TextBubbleModal.svg" alt="Text Bubble" width={140} height={140} />
             </div>
 
-            <div className="sm:hidden w-full h-fit absolute left-1/2 -translate-x-1/2 bottom-0 rotate-270  mb-[86px]">
+            <div className="sm:hidden w-full h-fit absolute left-1/2 -translate-x-1/2 bottom-0 rotate-270 mb-[86px]">
               <svg width="" height="161" viewBox="0 0 33 161">
                 <g clipPath="url(#clip0_148_1669)">
                   <path d="M32.5 69.5L32.5 23.5L16.5 23.5L16.5 69.5H32.5Z" fill="#fcd34d" />
@@ -97,24 +92,19 @@ const LegoModal = () => {
               </svg>
             </div>
 
-            <div className="w-[140px] h-fit absolute left-1/2 -translate-x-1/2 bottom-24 mb-[86px]
-            sm:bottom-0 sm:mb-[3px] sm:absolute sm:left-40
-            md:w-[160px] md:h-fit md:left-50">
-              <img src="/ModalLego.svg"></img>
+            <div className="w-[140px] h-fit absolute left-1/2 -translate-x-1/2 bottom-24 mb-[86px] sm:bottom-0 sm:mb-[3px] sm:absolute sm:left-40 md:w-[160px] md:h-fit md:left-50">
+              <Image src="/ModalLego.svg" alt="Lego Modal" width={140} height={140} />
             </div>
 
-            <div className="w-full h-fit absolute bottom-0 mb-[18px] right-0
-            sm:w-fit sm:h-fit sm:right-8 sm:mt-[20px] sm:top-1/2 sm:-translate-y-1/2 sm:mb-[0px]">
+            <div className="w-full h-fit absolute bottom-0 mb-[18px] right-0 sm:w-fit sm:h-fit sm:right-8 sm:mt-[20px] sm:top-1/2 sm:-translate-y-1/2 sm:mb-[0px]">
               <a href="TestDownloadLego.pdf" download="TestDownloadLego" target='_blank'>
                 <div className="items-center rounded-full w-fit h-131px m-auto bg-[#FFDF62] transition-all duration-100 hover:scale-106 cursor-pointer">
-                  <p className="self-center p-6 font-bold text-2xl
-                      sm:p-4 sm:text-xl
-                      md:p-6 md:text-2xl">DOWNLOAD PDF</p>
+                  <p className="self-center p-6 font-bold text-2xl sm:p-4 sm:text-xl md:p-6 md:text-2xl">DOWNLOAD PDF</p>
                 </div>
               </a>
             </div>
 
-            <div className="w-fit h-fit absolute top-6 right-6 ">
+            <div className="w-fit h-fit absolute top-6 right-6">
               <span
                 className="text-black text-2xl font-bold cursor-pointer hover:text-red-500"
                 onClick={closeModal}
@@ -130,5 +120,3 @@ const LegoModal = () => {
 };
 
 export default LegoModal;
-
-
