@@ -1,5 +1,3 @@
-"use client";
-
 import { useRef, useState, useEffect } from "react";
 import Lottie from "lottie-react";
 import animations from "../animations";
@@ -21,10 +19,19 @@ const LegoInput: React.FC<LegoInputProps> = ({
 }) => {
   const [inputValue, setInputValue] = useState<string[]>(value.split(""));
   const [isFocused, setIsFocused] = useState(false);
+  const [isClient, setIsClient] = useState(false);  // New state to check if we are on the client
   const soundRefs = useRef<Howl[]>([]);
   const blockSound = "/media/lego-building-classic-208359.mp3";
 
+  // Check if the code is running on the client side
   useEffect(() => {
+    setIsClient(true); // Set to true once mounted on the client
+  }, []);
+
+  // Handle sound effects setup only on the client side
+  useEffect(() => {
+    if (!isClient) return; // Avoid running this on the server
+
     soundRefs.current = Array.from(
       { length: 10 },
       () =>
@@ -37,32 +44,38 @@ const LegoInput: React.FC<LegoInputProps> = ({
     return () => {
       soundRefs.current.forEach((sound) => sound.unload());
     };
-  }, []);
+  }, [isClient]);
 
   useEffect(() => {
     setInputValue(value.split(""));
   }, [value]);
 
-  const handleInputChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const key = e.key;
-
-    if (key === "Backspace" && inputValue.length > 0) {
-      const newValue = inputValue.slice(0, -1);
-      soundRefs.current[Number(inputValue[inputValue.length - 1])].stop();
-      setInputValue(newValue);
-      onChange?.(newValue.join(""));
-    } else if (!isNaN(Number(key)) && inputValue.length < maxLength) {
-      const newValue = [...inputValue, key];
-      soundRefs.current[Number(key)].play();
-      setInputValue(newValue);
-      onChange?.(newValue.join(""));
+  const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value.replace(/\D/g, ""); // Permitir solo números
+    const digits = newValue.split("").slice(0, maxLength); // Limitar longitud
+  
+    // Detectar si se eliminó un número
+    if (digits.length < inputValue.length) {
+      const lastDigit = Number(inputValue[inputValue.length - 1]); // Último número antes de borrar
+      soundRefs.current[lastDigit]?.stop(); // Detener sonido del número eliminado
     }
-  };
+  
+    setInputValue(digits);
+    onChange?.(digits.join(""));
+  
+    // Reproducir sonido del nuevo número ingresado
+    if (digits.length > inputValue.length) {
+      const lastDigit = Number(digits[digits.length - 1]);
+      soundRefs.current[lastDigit]?.play();
+    }
+  };  
+
+  if (!isClient) {
+    return null; // Prevent rendering on the server
+  }
 
   return (
-    <div
-      className={`flex flex-col items-center justify-center w-full h-auto ${className}`}
-    >
+    <div className={`flex flex-col items-center justify-center w-full h-auto ${className}`}>
       {/* Contenedor de números */}
       <div
         className={`flex gap-1 md:gap-2.5 border-2 border-blacksac rounded-md transition-all ${
@@ -98,9 +111,8 @@ const LegoInput: React.FC<LegoInputProps> = ({
         autoFocus
         type="text"
         maxLength={maxLength}
-        onKeyDown={handleInputChange}
+        onChange={(e) => handleTextInput(e)}
         value={inputValue.join("")}
-        readOnly
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         className="absolute w-[78vw] max-w-157 h-[16vw] max-h-32 opacity-0"
