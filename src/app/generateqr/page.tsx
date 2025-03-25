@@ -5,6 +5,11 @@ import { useRouter } from "next/navigation";
 import LegoInput from "@/components/qrsearch/LegoInput";
 import dynamic from 'next/dynamic'
 
+const DynamicLego = dynamic(
+  () => import('@/components/qrsearch/LegoInput'),
+  { ssr: false }
+)
+
 export default function Page() {
   const router = useRouter();
   const [code, setCode] = useState('');
@@ -19,7 +24,7 @@ export default function Page() {
       <div className="w-full h-[92vh] flex items-center justify-center bg-[url(/bg-qrSearch.png)] bg-cover bg-no-repeat">
         <form action={() => codeHandler(code)} className="p-8 gap-4 flex flex-col items-center justify-center rounded-2xl bg-whitesac">
           <h1 className="text-2xl font-bold">¿Cuál es tu expediente?</h1>
-          <LegoInput value={code} onChange={setCode} maxLength={6} />
+          <DynamicLego value={code} onChange={setCode} maxLength={6} />
           <div className="w-full text-end">
             <button
               type="submit"
