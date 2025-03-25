@@ -21,7 +21,7 @@ const LegoInput: React.FC<LegoInputProps> = ({
   const [isFocused, setIsFocused] = useState(false);
   const [isClient, setIsClient] = useState(false);  // New state to check if we are on the client
   const soundRefs = useRef<Howl[]>([]);
-  const blockSound = "/media/lego-building-classic-208359.mp3";
+  const activeSounds = useRef<Map<number, Howl>>(new Map());
 
   // Check if the code is running on the client side
   useEffect(() => {
@@ -30,16 +30,16 @@ const LegoInput: React.FC<LegoInputProps> = ({
 
   // Handle sound effects setup only on the client side
   useEffect(() => {
+    const soundFiles = [
+      "/media/lego-sound-1.mp3",
+      "/media/lego-sound-2.mp3",
+      "/media/lego-sound-3.mp3",
+      "/media/lego-sound-4.mp3",
+    ];
+
     if (!isClient) return; // Avoid running this on the server
 
-    soundRefs.current = Array.from(
-      { length: 10 },
-      () =>
-        new Howl({
-          src: [blockSound],
-          html5: true,
-        })
-    );
+    soundRefs.current = soundFiles.map((src) => new Howl({ src: [src] , html5: true }));
 
     return () => {
       soundRefs.current.forEach((sound) => sound.unload());
@@ -51,22 +51,32 @@ const LegoInput: React.FC<LegoInputProps> = ({
   }, [value]);
 
   const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value.replace(/\D/g, ""); // Permitir solo números
-    const digits = newValue.split("").slice(0, maxLength); // Limitar longitud
+    const newValue = e.target.value.replace(/\D/g, ""); // Solo números
+    const digits = newValue.split("").slice(0, maxLength);
   
-    // Detectar si se eliminó un número
-    if (digits.length < inputValue.length) {
-      const lastDigit = Number(inputValue[inputValue.length - 1]); // Último número antes de borrar
-      soundRefs.current[lastDigit]?.stop(); // Detener sonido del número eliminado
-    }
+    // Identificar índices eliminados
+    const removedIndexes = inputValue
+      .map((_, index) => (digits[index] !== inputValue[index] ? index : null))
+      .filter((index): index is number => index !== null);
+  
+    // Detener sonidos de los índices eliminados
+    removedIndexes.forEach((index) => {
+      const sound = activeSounds.current.get(index);
+      if (sound) {
+        sound.stop();
+        activeSounds.current.delete(index);
+      }
+    });
   
     setInputValue(digits);
     onChange?.(digits.join(""));
   
-    // Reproducir sonido del nuevo número ingresado
+    // Si se agregó un número, reproducir un sonido aleatorio
     if (digits.length > inputValue.length) {
-      const lastDigit = Number(digits[digits.length - 1]);
-      soundRefs.current[lastDigit]?.play();
+      const lastDigitIndex = digits.length - 1;
+      const randomSound = soundRefs.current[Math.floor(Math.random() * soundRefs.current.length)];
+      randomSound.play();
+      activeSounds.current.set(lastDigitIndex, randomSound);
     }
   };  
 

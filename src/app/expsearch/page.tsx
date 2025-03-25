@@ -19,8 +19,8 @@ export default function Page() {
   }
 
   return (
-    <div className=" w-full h-full bg-whitesac">
-      <div className="w-full h-[92dvh] flex items-center justify-center bg-[url(/bg-qrSearch.png)] bg-cover bg-no-repeat bg-center">
+    <div className="w-full h-full bg-whitesac">
+      <div className="w-full h-[92dvh] flex items-center justify-center bg-[url(/bg-qrSearch.png)] bg-cover bg-no-repeat">
         <form action={() => codeHandler(code)} className="p-8 gap-4 flex flex-col items-center justify-center rounded-2xl bg-whitesac">
           <h1 className="text-2xl font-bold">¿Cuál es tu expediente?</h1>
           <DynamicLego value={code} onChange={setCode} maxLength={6} />
