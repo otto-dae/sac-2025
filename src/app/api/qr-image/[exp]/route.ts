@@ -22,7 +22,7 @@ export async function GET(
       lego_image: lego_image
     }
     return NextResponse.json(response, {status: 200});
-  } catch(error){
+  } catch(error: any){
     return NextResponse.json(
       { error: "Bad Request" },
       { status: 400 }
@@ -57,7 +57,7 @@ export async function POST(
       data: studentQr
     };
     return NextResponse.json(response, {status: 201})
-  } catch(error){
+  } catch(error: any){
     return NextResponse.json(
       { error: "Bad Request" },
       { status: 400 }
