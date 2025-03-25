@@ -81,7 +81,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className='flex flex-col px-2 md:px-4 items-center justify-center h-[92vh] space-y-4 bg-[url("/bg-character-editor.png")] bg-cover select-text'>
+    <div className='flex flex-col px-2 md:px-4 items-center justify-center h-[92dvh] space-y-4 bg-[url("/bg-character-editor.png")] bg-cover select-text'>
       {/* Color selector */}
       <div className="w-full md:w-1/2 relative flex justify-center space-x-4">
         <div className="absolute top-4 right-0 flex space-x-4 z-60">
