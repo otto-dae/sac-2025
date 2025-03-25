@@ -60,7 +60,7 @@ export default function Record() {
   };  
 
   return (
-    <div className="relative min-h-screen w-screen flex flex-col items-center justify-center">
+    <div className="relative min-h-screen w-full overflow-clip flex flex-col items-center justify-center">
       {/* Imagen de fondo */}
       <Image
         src="/Attendance.png"
