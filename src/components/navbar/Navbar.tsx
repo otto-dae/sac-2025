@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50">
-        <div id="navbar-container" className={`flex h-[8vh] transition text-xl w-full content-center items-center justify-between bg-black`}>
+        <div id="navbar-container" className={`flex h-[8dvh] transition text-xl w-full content-center items-center justify-between bg-black`}>
           <div className="hidden md:flex md:flex-row px-4 gap-4 md:w-fit md:h-fit">
             <NavbarButton text={"Inicio"} styling={""} imageUrl={"/homeIcon.png"} linkUrl={"/"} tStyling={""} width={45} height={90}/>
             <NavbarButton text={"Asistencia"} styling={""} imageUrl={"/AsistenciaIcon.png"} linkUrl={"/record"} tStyling={""} width={45} height={90}/>
@@ -52,12 +52,12 @@ const Navbar: React.FC = () => {
           <div className="px-4">
             <NavbarButton 
               text={"Generar qr"} 
-              styling={`md:border-2 md:border-whitesac md:rounded-full md:px-8 md:py-1 text-white`} 
+              styling={`md:border-2 md:border-whitesac md:rounded-full md:px-6 md:py-1 text-white`} 
               imageUrl={"/QRLegoHead.svg"} 
-              linkUrl={"/generateqr"} 
-              tStyling={"hidden md:block text-2xl font-medium font-['Cera_Pro'] leading-normal"} 
-              width={37} 
-              height={85}
+              linkUrl={"/expsearch"} 
+              tStyling={"hidden md:block text-xl font-medium font-['Cera_Pro'] leading-normal"} 
+              width={34} 
+              height={82}
             />
           </div>
         </div>
