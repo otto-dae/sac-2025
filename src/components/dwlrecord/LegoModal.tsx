@@ -1,35 +1,63 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 
 const LegoModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [expediente, setExpediente] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const openModal = () => {
-    if (expediente.trim() !== "") {
-      setIsOpen(true);
-    }
+  const handleSearch = async () => {
+    if (!expediente.trim()) return;
+  
+    setLoading(true);
+    setError("");
+  
+    // Simular llamada al servidor (reemplazar con fetch real)
+    setTimeout(() => {
+      setLoading(false);
+      if (expediente === "123") {
+        setIsOpen(true);  // Abre el modal si el expediente es correcto
+      } else {
+        setError("Expediente no encontrado");
+        setIsOpen(true);  // Abre el modal también cuando hay error
+        setExpediente(""); // Reset input
+      }
+    }, 2000);
   };
 
   const closeModal = () => {
     setIsOpen(false);
     setExpediente("");
   };
+  
 
   return (
-    <div className="flex flex-col justify-start items-center w-full">
-      <div className="flex flex-col justify-start items-center w-full mt-10 lg:mt-15">
-        <input
-          type="number"
-          value={expediente}
-          onChange={(e) => setExpediente(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && openModal()}
-          placeholder="Ingresa tu expediente..."
-          className="border-1 border-gray-700 rounded-3xl p-1 md:p-2 w-full focus:outline-none placeholder:text-lg sm:placeholder:text-base md:placeholder:text-xl placeholder:p-3 text-lg sm:text-base md:text-xl"
+    <div className="flex flex-col justify-center items-center w-full mt-5 lg:mt-15">
+      {!loading ? (
+        <>
+          <input
+            type="number"
+            value={expediente}
+            onChange={(e) => setExpediente(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+            placeholder="Ingresa tu expediente..."
+            className="border-1 border-gray-700 rounded-3xl p-2 w-full focus:outline-none text-lg md:text-xl placeholder-gray-400"
+          />
+          {error && <p className="text-red-500 mt-1">{error}</p>}
+        </>
+      ) : (
+        <Image
+          src="/cubo.svg"
+          alt="Lego Loader"
+          width={70}
+          height={70}
+          className="animate-pulse mb-20"
         />
-      </div>
+      )}
 
-      {isOpen && (
+{isOpen && (
         <div className="fixed inset-0 backdrop-blur-xs bg-opacity-50 flex justify-center items-center z-50 overflow-hidden">
           <div className="rounded-3xl relative min-h-[600px] min-w-[300px] bg-gradient-to-r from-[#f87171] from-50% to-white to-50% overflow-hidden sm:min-h-[300px] sm:min-w-[500px] md:min-h-[400px] md:min-w-[700px]">
 
@@ -99,8 +127,9 @@ const LegoModal = () => {
         </div>
       )}
     </div>
-
   );
 };
 
 export default LegoModal;
+
+

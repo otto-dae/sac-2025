@@ -1,11 +1,12 @@
-interface AttendanceShettProps {
+interface AttendanceSheetProps {
   width: number;
+  height: number;
   children?: React.ReactNode; 
 }
 
-const AttendanceShett: React.FC<AttendanceShettProps> = ({ width, children }) => {
+const AttendanceSheet: React.FC<AttendanceSheetProps> = ({ width, height, children }) => {
   return (
-    <svg width={width} height="407" viewBox="0 0 639 407" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} viewBox="0 0 639 407" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_1595_2231)">
         <rect y="34" width="639" height="334" rx="52" fill="white"/>
         <path d="M166 68H212V52L166 52V68Z" fill="#67D6FE"/>
@@ -27,4 +28,4 @@ const AttendanceShett: React.FC<AttendanceShettProps> = ({ width, children }) =>
   );
 }
 
-export default AttendanceShett;
+export default AttendanceSheet;
