@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import LegoInput from "@/components/qrsearch/LegoInput";
 import dynamic from 'next/dynamic'
 
 const DynamicLego = dynamic(
