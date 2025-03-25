@@ -21,7 +21,7 @@ export default function Page() {
     const [canvasInstance, setCanvasInstance] = useState<StaticCanvas | null>(null);
     const params = useParams();
     const qrgenerator = params.qrgenerator as string[];
-    const [headwearId, headId, patternId, playerColor, patternTone, userId] = qrgenerator;
+    const [userId, headwearId, headId, patternId, playerColor, patternTone] = qrgenerator;
 
     useEffect(() => {
         const partCategories = [headParts, headwearParts, patternParts];
