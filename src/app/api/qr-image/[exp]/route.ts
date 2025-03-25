@@ -51,7 +51,7 @@ export async function POST(
     if (isNotValidImage)	{
       return NextResponse.json(
 	{error: "Field must be lego_image", example: examplePayload},
-	{status: 400}
+	{status: 401}
       )
     }
     const studentQr = await db
