@@ -48,7 +48,7 @@ export async function POST(
 	{status: 400}
       );
     }
-    if (isNotValidName)	{
+    if (isNotValidImage)	{
       return NextResponse.json(
 	{error: "Field must be lego_image", example: examplePayload},
 	{status: 400}
