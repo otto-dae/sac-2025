@@ -36,9 +36,8 @@ export async function POST(
   try {
     const {exp} = await params;
     const body = await request.json();
-    const REGEX_BASE64 = new RegExp('^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$');
     const isNotValidName = !body.nombre || typeof body.nombre !== 'string',
-      isNotValidImage = (!body.lego_image || typeof body.lego_image !== 'string') && !REGEX_BASE64.test(body.lego_image);
+      isNotValidImage = (!body.lego_image || typeof body.lego_image !== 'string');
     if (isNotValidName || isNotValidImage) {
       return NextResponse.json(
 	{ error: "Bad Request",
