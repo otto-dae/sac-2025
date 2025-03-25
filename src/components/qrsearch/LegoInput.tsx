@@ -50,25 +50,25 @@ const LegoInput: React.FC<LegoInputProps> = ({
     setInputValue(value.split(""));
   }, [value]);
 
-  const handleInputChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const key = e.key;
-
-    if (key === "Backspace" && inputValue.length > 0) {
-      const newValue = inputValue.slice(0, -1);
-      if (soundRefs.current[Number(inputValue[inputValue.length - 1])]) {
-        soundRefs.current[Number(inputValue[inputValue.length - 1])].stop();
-      }
-      setInputValue(newValue);
-      onChange?.(newValue.join(""));
-    } else if (!isNaN(Number(key)) && inputValue.length < maxLength) {
-      const newValue = [...inputValue, key];
-      if (soundRefs.current[Number(key)]) {
-        soundRefs.current[Number(key)].play();
-      }
-      setInputValue(newValue);
-      onChange?.(newValue.join(""));
+  const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value.replace(/\D/g, ""); // Permitir solo números
+    const digits = newValue.split("").slice(0, maxLength); // Limitar longitud
+  
+    // Detectar si se eliminó un número
+    if (digits.length < inputValue.length) {
+      const lastDigit = Number(inputValue[inputValue.length - 1]); // Último número antes de borrar
+      soundRefs.current[lastDigit]?.stop(); // Detener sonido del número eliminado
     }
-  };
+  
+    setInputValue(digits);
+    onChange?.(digits.join(""));
+  
+    // Reproducir sonido del nuevo número ingresado
+    if (digits.length > inputValue.length) {
+      const lastDigit = Number(digits[digits.length - 1]);
+      soundRefs.current[lastDigit]?.play();
+    }
+  };  
 
   if (!isClient) {
     return null; // Prevent rendering on the server
@@ -111,9 +111,8 @@ const LegoInput: React.FC<LegoInputProps> = ({
         autoFocus
         type="text"
         maxLength={maxLength}
-        onKeyDown={handleInputChange}
+        onChange={(e) => handleTextInput(e)}
         value={inputValue.join("")}
-        readOnly
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         className="absolute w-[78vw] max-w-157 h-[16vw] max-h-32 opacity-0"
