@@ -94,12 +94,23 @@ export default function Page() {
                 }
 
                 // Textos
+                const urlMap = {
+                    CeraPro: 'url("/fonts/cera-pro/CeraPro-Bold.woff")'
+                }
+
+                const fontCera = await new FontFace('CeraPro', urlMap.CeraPro, {
+                    style: 'normal',
+                    weight: 'normal'
+                }).load()
+                
+
+                document.fonts.add(fontCera)
                 const text1 = new FabricText(userId, {
                     left: (50 * scaleFactor),
                     top: (555 * scaleFactor),
                     fontSize: (50 * scaleFactor),
                     fill: 'black',  // Color del texto
-                    fontFamily: 'Cera Pro', // Fuente,
+                    fontFamily: 'CeraPro', // Fuente,
                     fontWeight: 'bold',
                     angle: 270
                 });
@@ -109,7 +120,7 @@ export default function Page() {
                     top: (390 * scaleFactor),
                     fontSize: (50 * scaleFactor),
                     fill: 'black',  // Color del texto
-                    fontFamily: 'Cera Pro', // Fuente,
+                    fontFamily: 'CeraPro', // Fuente,
                     fontWeight: 'bold',
                     angle: 90
                 });
