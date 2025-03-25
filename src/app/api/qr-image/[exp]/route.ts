@@ -42,7 +42,7 @@ export async function POST(
       return NextResponse.json(
 	{ error: "Bad Request",
 	  examplePayload: {
-	    name: "Example",
+	    nombre: "Example",
 	    lego_image: "base64image"
 	  }
 	},
