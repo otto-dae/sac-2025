@@ -5,12 +5,7 @@ import Image from "next/image";
 import NavbarButton from "./NavbarButton";
 
 const Navbar: React.FC = () => {
-
-
-  const [isScrolling, setIsScrolling] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-
 
   useEffect(() => {
     if (isMenuOpen) {

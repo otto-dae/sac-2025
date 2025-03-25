@@ -23,6 +23,7 @@ export async function GET(
     }
     return NextResponse.json(response, {status: 200});
   } catch(error: any){
+    console.log(error);
     return NextResponse.json(
       { error: "Bad Request" },
       { status: 400 }
@@ -63,6 +64,7 @@ export async function POST(
     };
     return NextResponse.json(response, {status: 201})
   } catch(error: any){
+    console.log(error);
     return NextResponse.json(
       { error: "Bad Request" },
       { status: 400 }
