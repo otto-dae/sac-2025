@@ -24,7 +24,7 @@ const NavbarButton =({ linkUrl,
         <Link href={linkUrl}>
             <div className={`w-fit uppercase h-fit self-stretch justify-start ${styling} items-center gap-2 flex transition-all duration-100 hover:scale-106`}>
                 <Image src={imageUrl} alt="Picture of SAC" width={width} height={height} unoptimized={true}/>
-                <div className={`${tStyling} font-normal font-['Cera Pro'] leading-normal`}>{text}</div>
+                <div className={`${tStyling} text-whitesac font-normal font-['Cera Pro'] leading-normal`}>{text}</div>
             </div>
         </Link>
     )

@@ -82,7 +82,7 @@ const content = tv({
 
 const drawer = tv({
   base: [
-    "fixed top-auto bottom-0 z-50 max-h-full w-full max-w-2xl border border-b-transparent bg-overlay outline-hidden z-90",
+    "fixed top-auto bottom-0 z-50 max-h-full w-full max-w-2xl border border-b-transparent bg-overlay outline-hidden z-30",
   ],
   variants: {
     isMenu: {
@@ -131,7 +131,7 @@ const PopoverContent = ({
   const effectiveOffset = isSubmenuTrigger ? offset - 5 : offset
   return isMobile && respectScreen ? (
     <ModalOverlay
-      className="fixed top-0 left-0 isolate z-50 h-(--visual-viewport-height) w-full bg-overlay/10 [--visual-viewport-vertical-padding:16px] z-90"
+      className="fixed top-0 left-0 isolate z-30 h-(--visual-viewport-height) w-full bg-overlay/10 [--visual-viewport-vertical-padding:16px]"
       {...props}
       isDismissable
     >
