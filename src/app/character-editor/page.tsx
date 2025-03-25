@@ -81,7 +81,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className='flex flex-col px-2 md:px-4 items-center justify-center h-svh space-y-4 bg-[url("/bg-character-editor.png")] bg-cover bg-center select-text'>
+    <div className='flex flex-col px-2 md:px-4 items-center justify-center h-[92dvh] space-y-4 bg-[url("/bg-character-editor.png")] bg-cover select-text'>
       {/* Color selector */}
       <div className="w-full md:w-1/2 relative flex justify-center space-x-4">
         <div className="absolute top-4 right-0 flex space-x-4 z-60">
@@ -113,42 +113,39 @@ export default function Page() {
 
       {/* Character Preview */}
       <div className="relative w-full md:w-2/3 xl:w-1/3 h-[40vh] md:h-1/2">
-        <div className="absolute -top-3 z-50">
-          <Image src={hands} width={500} height={500} alt="Hands preview" />
+        <div className="absolute inset-x-0 -top-3 z-50">
+          <Image src={hands} className="w-full aspect-square" alt="Hands preview" />
         </div>
         {selectedParts.headwear && (
-          <div className="absolute -top-3 z-40">
+          <div className="absolute inset-x-0 -top-3 z-40">
             <Image
+              className="w-full aspect-square"
               src={selectedParts.headwear.src}
-              width={500}
-              height={500}
               alt="Headwear preview"
             />
           </div>
         )}
-        <div className="absolute -top-3 z-30">
+        <div className="absolute inset-x-0 -top-3 z-30">
           <Image
+            className="w-full aspect-square"
             src={selectedParts.head.src}
-            width={500}
-            height={500}
             alt="Head preview"
           />
         </div>
         {selectedParts.clothe && (
           <div
-            className={`absolute -top-3 z-20 ${
+            className={`absolute inset-x-0 -top-3 z-20 ${
               semantic === "black" && "invert"
             }`}
           >
             <Image
+              className="w-full aspect-square"
               src={selectedParts.clothe.src}
-              width={500}
-              height={500}
               alt="Pattern preview"
             />
           </div>
         )}
-        <div className="absolute inset-0 -top-3 z-10 mix-blend-multiply w-full max-w-[500px] aspect-square">
+        <div className="absolute inset-x-0 -top-3 z-10 mix-blend-multiply w-full aspect-square">
           <svg
             className="w-full h-full"
             viewBox="0 0 1024 1024"
@@ -173,7 +170,7 @@ export default function Page() {
             />
           </svg>
         </div>
-        <div className="absolute inset-0 -top-3 z-10 w-full max-w-[500px] aspect-square">
+        <div className="absolute inset-x-0 -top-3 z-10 w-full aspect-square">
           <svg
             className="w-full h-full"
             viewBox="0 0 1024 1024"
@@ -192,8 +189,8 @@ export default function Page() {
             />
           </svg>
         </div>
-        <div className="absolute -top-3 z-0">
-          <Image src={torso} width={500} height={500} alt="Body preview" />
+        <div className="absolute inset-x-0 -top-3 z-0">
+          <Image src={torso} className="w-full aspect-square" alt="Body preview" />
         </div>
       </div>
 

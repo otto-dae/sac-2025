@@ -1,11 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import LegoWall from "@/components/loading/LegoWall";
 import Schedule from "@/components/schedule/Schedule";
 import Speakers from "@/components/speakers/Speakers";
 import Hero from "@/components/hero/Hero";
 import About from "@/components/about/About";
+import Footer from "@/components/footer/Footer";
 
 
 export default function Home() {
@@ -21,15 +20,16 @@ export default function Home() {
   // }, []);
 
   return (
-    <div className=" overflow-hidden">
+    <div className=" overflow-hidden ">
       {/* {isLoading ? (
         <LegoWall />
       ) : ( */}
-        <main className="pt-22 bg-whitesac/50">
+        <main className="pt-22 bg-[auto_80%] bg-repeat bg-[url('../../public/backgroundLanding.jpg')]">
           <Hero />
           <About/>
           <Schedule />
           <Speakers/>
+          <Footer/>
         </main>
         {/* )} */}
     </div>
