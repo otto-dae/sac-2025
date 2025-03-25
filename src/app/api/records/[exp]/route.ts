@@ -18,7 +18,6 @@ export async function GET(
     return NextResponse.json({ error: "Student not found" }, { status: 404 });
   }
   const response = {
-    student: registrarOfStudent[0].students.nombre,
     exp: registrarOfStudent[0].students.expediente,
     workshops: registrarOfStudent.map((s) => s.workshops),
   }
