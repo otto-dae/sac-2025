@@ -39,10 +39,10 @@ const ErrorComponent = ({code, message}: props) => {
   return (
     <div className=" m-20 flex flex-col justify-center gap-10 items-center h-full overflow-clip">
       <div className=" relative flex flex-row h-full w-full md:w-96" ref={movable}>
-        <Image id="movable-leg" src={Leg} alt="" className="absolute top-20 right-38 w-2xs md:w-70" />
+        <Image id="movable-leg" src={Leg} alt="" className="absolute right-[40%] top-[20%] w-[70%]" />
         
         <Image src={Static} alt="" className="w-full"/>
-        <Image id="ouch" src={Ouch} alt="" className=" w-22 -ml-24 mt-16 md:w-30 md:-ml-10"/>
+        <Image id="ouch" src={Ouch} alt="" className=" w-[20%] -ml-[25%] mt-[10%]"/>
       </div>
       <div className="lg:text-6xl text-3xl inline-flex items-center gap-5 h-full">
         <span className=" text-redsac font-bold text-6xl lg:text-8xl">{code}: </span>
