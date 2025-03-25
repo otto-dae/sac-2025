@@ -5,7 +5,7 @@ import altBg from "./assets/altBgAbout.svg"
 
 export default function About() {
   return (
-    <section id="about" className="relative w-full h-screen flex items-center justify-center mt-20 mb-20 p-2 md:p-28">
+    <section id="about" className="relative w-full h-screen flex items-center justify-center md:mt-20 md:mb-20 p-2 md:p-28">
       <div className=" w-full justify-evenly items-center flex flex-col md:p-20">
         <div className="hidden md:flex mb-20 h-1 w-6xl bg-linear-[90deg,rgba(247,94,99,1)_25%,rgba(66,205,255,1)_25%,rgba(66,205,255,1)_50%,rgba(197,240,111,1)_50%,rgba(214,235,107,1)_75%,rgba(255,223,98,1)_75%,rgba(255,223,98,1)_100%]" />
         <div className="relative pr-10 pl-10 md:p-15 mb-5 max-w-3xl text-center flex items-center justify-center gap-5 w-full">
