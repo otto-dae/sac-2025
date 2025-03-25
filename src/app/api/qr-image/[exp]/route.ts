@@ -10,16 +10,16 @@ export async function GET(
   const {exp} = await params;
   const studentQr = await db
   .select({studentNumber: students.expediente,
-  image: students.lego_image})
+  lego_image: students.lego_image})
   .from(students)
   .where(eq(students.expediente, parseInt(exp)));
   if(studentQr.length === 0){
     return NextResponse.json({error: 'Student not found'}, {status: 404});
   }
-  const { studentNumber, image } = studentQr[0];
+  const { studentNumber, lego_image } = studentQr[0];
   const response = {
-    studentExp: studentNumber,
-    studentImage: image
+    expediente: studentNumber,
+    lego_image: lego_image
   }
   return NextResponse.json(response, {status: 200});
   } catch(error){
