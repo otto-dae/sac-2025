@@ -14,7 +14,6 @@ async function seed() {
   }
   const student: typeof students.$inferInsert = {
     expediente: 275931,
-    nombre: "Karlo",
   };
 
   const workshop: typeof workshops.$inferInsert = {
