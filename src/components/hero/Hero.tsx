@@ -9,9 +9,9 @@ import exibIcon from "./assets/Exhibitor.png";
 
 export default function Hero() {
   return (
-    <div className=" h-screen w-full flex flex-col justify-center items-center -mt-15 transition-all">
+    <div className=" h-screen w-full flex flex-col justify-center items-center -mt-15 transition-all relative z-50">
       <div className="flex flex-row w-full justify-center">
-        <div className="w-52 absolute left-[5%] top-[30%] gap-10">
+        <div className="w-52 absolute left-[5%] top-0 md:top-[30%] gap-10">
           <SectionButtons
             color={colorVars[3]}
             title="¿Qué es la SAC?"
@@ -33,7 +33,7 @@ export default function Hero() {
             identation="md:ml-20"
           />
         </div>
-        <div className="w-70 md:w-86 relative">
+        <div className="w-70 md:w-86 relative z-20">
           <Image
             src={heroImg}
             alt=""
@@ -48,7 +48,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className=" w-full flex flex-col h-fit mt-10">
+      <div className=" w-full flex flex-col h-fit mt-10 z-20">
         <p className=" w-full text-center text-blacksac font-light transform text-4xl md:text-7xl ">
           SEMANA ACADEMICA <br />
           CULTURAL 2025
@@ -60,7 +60,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="flex flex-col justify-center absolute h-96 min-h-96 w-screen -z-10 top-0">
+      <div className="flex flex-col justify-center absolute h-96 min-h-96 w-screen top-0 opacity-30">
         {Array.from({ length: 10 }).map((_, index) => (
           <div className="flex flex-row w-full min-h-32" key={index}>
             {Array.from({ length: 8 }).map((_, index) => (
