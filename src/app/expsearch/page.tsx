@@ -20,14 +20,14 @@ export default function Page() {
     setIsLoading(true);
 
     // Fetch the student data
-    fetch(`/api/records/${code}`)
+    fetch(`/api/qr-image/${code}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
           Swal.fire({
             icon: 'warning',
-            title: `¿Estás seguro que deseas registrar el expediente ${code}?`,
-            text: 'Una vez creado el QR, no podrás modificarlo',
+            title: `¿Estás seguro que éste es tu expediente?`,
+            text: code,
             showCancelButton: true,
             confirmButtonText: 'Sí, registrar',
             cancelButtonText: 'Cancelar',
@@ -37,12 +37,25 @@ export default function Page() {
               router.push(`/charactereditor/${code}`);
             }
           });
-
           setIsLoading(false);
           return;
         }
 
-        router.push(`/charactereditor/${code}`);
+        Swal.fire({
+          icon: 'info',
+          title: 'Expediente encontrado',
+          text: '¿Deseas visualizar tu tarjeta o editar tu personaje?',
+          showCancelButton: true,
+          confirmButtonText: 'Visualizar',
+          cancelButtonText: 'Editar',
+        }).then((result) => {
+          if(result.isConfirmed) {
+            router.push(data.url_image);
+          }
+          else if(result.dismiss === Swal.DismissReason.cancel) {
+            router.push(`/charactereditor/${code}`);
+          }
+        });
       })
       .catch((err) => {
         console.error(err);
@@ -89,21 +102,6 @@ export default function Page() {
           </div>
         </form>
       </div>
-      <style jsx>{`
-        .loader {
-          border: 3px solid white;
-          border-top: 3px solid transparent;
-          border-radius: 50%;
-          width: 16px;
-          height: 16px;
-          animation: spin 0.8s linear infinite;
-        }
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        .stac
-      `}</style>
     </div>
   );
 }

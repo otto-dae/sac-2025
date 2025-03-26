@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { StaticCanvas, FabricText } from 'fabric';
+import Swal from 'sweetalert2';
 
 import qrbg from '@/assets/QRCard.png';
 import qricon from '@/assets/qr-block-icon.png';
@@ -14,11 +15,13 @@ import hands from '@/assets/character-editor/body/hands.png';
 
 import { loadImage, applyInvertFilter, createSVG, createQRSVG, SVG_SLEEVE, SVG_TORSO } from '@/utils/canvasUtils';
 import { GlareCard } from '@/components/ui/glare-card';
+import Alert from '@/components/card-generator/Alert';
 
 export default function Page() {
     const scaleFactor = 0.75;
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const [canvasInstance, setCanvasInstance] = useState<StaticCanvas | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
     const params = useParams();
     const qrgenerator = params.qrgenerator as string[];
     const [userId, headwearId, headId, patternId, playerColor, patternTone] = qrgenerator;
@@ -156,7 +159,7 @@ export default function Page() {
     }, [headId, headwearId, patternId, patternTone, playerColor, userId,]);
         
     const uploadImage = () => {
-        console.log('Uploading image...');
+        setIsLoading(true);
         const dataUrl = canvasInstance?.toDataURL({ format: 'png', multiplier: 2 });
         if (!dataUrl) return;
         console.log('dataUrl: ', dataUrl);
@@ -167,46 +170,72 @@ export default function Page() {
             },
             body: JSON.stringify({
                 lego_image: dataUrl,
-                nombre: 'QR'
+                url_image: `/cardgenerator/${userId}/${headwearId}/${headId}/${patternId}/${playerColor}/${patternTone}`
             })
         }).then(async (res) => {
             const data = await res.json();
-            console.log(data);
+            Swal.fire({
+                icon: 'success',
+                title: data.message,
+                text: '¡Tu tarjeta ha sido registrada!',
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true
+            });
+            setIsLoading(false);
         }).catch((err) => {
             console.error(err);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al registrar la tarjeta',
+                text: 'Inténtalo de nuevo más tarde',
+                confirmButtonText: 'Entendido',
+            });
+            setIsLoading(false);
         });
     };
 
-    const downloadImage = (dataUrl: string) => {
-        const a = document.createElement('a');
-        a.href = dataUrl;
-        a.download = 'qr-sac.png';
-        a.click();
+    const downloadImage = () => {
+        setIsLoading(true);
+        try {
+            const dataUrl = canvasInstance?.toDataURL({ format: 'png', multiplier: 2 });
+            if (!dataUrl) return;
 
-        uploadImage();
-    }
+            const a = document.createElement('a');
+            a.href = dataUrl;
+            a.download = 'qr-sac.png';
+            a.click();
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
-        <div className=' w-full min-h-fit h-screen p-5 gap-5 bg-blacksac flex flex-col items-center'>
-            <button
-                onClick={() => uploadImage()}
-                className="w-full md:w-fit relative inline-flex h-12 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
-            >
-                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#F59CA9_0%,#DF57BC_50%,#F59CA9_100%)]" />
-                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
-                    Subir Imagen
-                </span>
-            </button>
+        <div className=' w-full min-h-fit h-screen gap-5 bg-blacksac flex flex-col items-center'>
+            <Alert />
+            <div className='flex flex-col md:flex-row h-fit w-full md:w-108 px-5 pt-5 md:px-0 gap-5 justify-between'>
+                <button
+                    onClick={() => uploadImage()}
+                    className={`w-full relative inline-flex h-12 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#7DDE92_0%,#037171_50%,#7DDE92_100%)]" />
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+                        {isLoading ? 'Cargando...' : 'Registrar Imagen'}
+                    </span>
+                </button>
 
-            <button
-                onClick={() => downloadImage(canvasInstance?.toDataURL({ format: 'png', multiplier: 2 }) || '')}
-                className="w-full md:w-fit relative inline-flex h-12 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
-            >
-                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
-                    Descargar Imagen
-                </span>
-            </button>
+                <button
+                    onClick={() => downloadImage()}
+                    className={`w-full relative inline-flex h-12 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                    <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+                        {isLoading ? 'Cargando...' : 'Descargar Imagen'}
+                    </span>
+                </button>
+            </div>
 
             <GlareCard>
                 <canvas ref={canvasRef} width={594 * scaleFactor} height={942 * scaleFactor}></canvas>
