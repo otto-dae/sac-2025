@@ -48,17 +48,36 @@ export async function POST(
         { status: 401 },
       );
     }
-    const studentQr = await db
-      .insert(students)
-      .values({
-        expediente: parseInt(exp),
-        lego_image: body.lego_image,
-      });
-    const response = {
-      message: "Image uploaded",
-      data: studentQr,
-    };
-    return NextResponse.json(response, { status: 201 });
+    const studentAlreadyExists = await db
+      .select()
+      .from(students)
+      .where(eq(students.expediente, parseInt(exp)))
+      
+    if (!studentAlreadyExists) {
+      const studentQr = await db
+        .insert(students)
+        .values({
+          expediente: parseInt(exp),
+          lego_image: body.lego_image,
+        });
+      const response = {
+        message: "Image uploaded",
+        data: studentQr,
+      };
+      return NextResponse.json(response, { status: 201 });
+    } else {
+      const studentQr = await db
+        .update(students)
+        .values({
+          lego_image: body.lego_image
+        })
+        .where(eq(students.expediente, parseInt(exp)))
+      const response = {
+        message: "Image updated",
+        data: studentQr,
+      }
+    }
+
   } catch (error: unknown) {
     console.log(error);
     return NextResponse.json({ error: "Bad Request" }, { status: 400 });
