@@ -33,6 +33,7 @@ export default function Page() {
             cancelButtonText: 'Cancelar',
           }).then((result) => {
             if (result.isConfirmed) {
+              setIsLoading(true);
               router.push(`/charactereditor/${code}`);
             }
           });
