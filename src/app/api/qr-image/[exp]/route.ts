@@ -68,7 +68,7 @@ export async function POST(
     } else {
       const studentQr = await db
         .update(students)
-        .values({
+        .set({
           lego_image: body.lego_image
         })
         .where(eq(students.expediente, parseInt(exp)))
