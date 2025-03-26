@@ -76,6 +76,7 @@ export async function POST(
         message: "Image updated",
         data: studentQr,
       }
+      return NextResponse.json(response, { status: 201 });
     }
 
   } catch (error: unknown) {
