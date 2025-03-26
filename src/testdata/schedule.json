@@ -4,166 +4,161 @@
       "events": [
         {
           "time": "9:00",
-          "items": [{ "title": "Inauguración de la SAC 2025", "place": "A01", "duration": 1 }]
+          "items": [{ "title": "Inauguración de la SAC 2025", "place": "Auditorio", "duration": [1, 12] }]
         },
         {
-          "time": "11:00",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 }]
+          "time": "10:00",
+          "items": [{ "title": "Centro de espectáculos", "place": "Auditorio", "duration": [1, 12] }]
+        },
+        {
+          "time": "11:30",
+          "items": [{ "title": "Build an Innovative Q&A Interface Powered by Generative AI in Oracle APEX", "place": "Auditorio", "duration": [1,4] },
+          { "title": "Resolución del hackeo de la nube", "place": "Sala de Usos Múltiples", "duration": [1,4] },
+          { "title": "Reformas constitucionales y el futuro de las telecomunicaciones en México", "place": "Laboratorio de Software", "duration": [1,4] }]
+        },
+        {
+          "time": "13:00",
+          "items": [{ "title": "Transformando el Futuro: Productividad e Innovación en la Era de la Inteligencia Artificial ", "place": "Auditorio", "duration": [2,4]},
+          { "title": "Business Automation Platform", "place": "Sala de Usos Múltiples", "duration": [2,4] },
+          { "title": "FTTx, Fibra óptica en todas partes, ¿cómo construir una infraestructura de acceso para el futuro?", "place": "Laboratorio de Software", "duration": [2,4] }]
         },
         {
           "time": "14:30",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 5 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 }]
+          "items": []
         },
         {
           "time": "15:00",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
-        },
-        {
-          "time": "15:30",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
-        },
-        {
-          "time": "16:00",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
-        },
-        {
-          "time": "16:30",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
-        },
-        {
-          "time": "17:30",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
+          "items": [{ "title": "Taller de Comunicación Efectiva", "place": "-", "duration": [1,3] },
+          { "title": "Prototipado en Figma", "place": "-", "duration": [1,3] },
+          { "title": "Blender Desde Cero", "place": "-", "duration": [1,3] },
+          { "title": "ThreeJS", "place": "-", "duration": [1,3] }]
         },
         {
           "time": "18:30",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
+          "items": [{ "title": "Noche de Cine", "place": "-", "duration": [2,12] }]
         },
         {
-          "time": "19:00",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 }]
-        }
-      ]
+          "time": "20:30",
+          "items": []
+        }]
     },
     {
       "day": "Martes",
       "events": [
         {
-          "time": "7:00",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
+          "time": "9:00",
+          "items": [{ "title": "Hacer que las cosas sucedan", "place": "Auditorio", "duration": [1, 4] },
+          { "title": "Inteligencia Artificial Generativa en Proyectos Empresariales", "place": "Sala de Usos Múltiples", "duration": [1, 4] },
+          { "title": "Taller de Drones Autónomos", "place": "-", "duration": [1, 4] }]
         },
         {
-          "time": "7:30",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
+          "time": "10:30",
+          "items": [{ "title": "Liderazgo en las organizaciones para el desarrollo de las Green Skills", "place": "Auditorio", "duration": [1, 6]},
+          { "title": "Concurso de Fotografía ", "place": "Edificio de Innovación", "duration": [1, 6] }]
         },
         {
-          "time": "8:00",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
+          "time": "12:00",
+          "items": [{ "title": "Infraestructura terrestre y nave espacial para el control de satélites Geoestacionarios", "place": "Sala de Usos Múltiples", "duration": [1,6] },
+          { "title": "Antropogenía", "place": "Auditorio", "duration": [1,6] }]
         },
         {
-          "time": "8:30",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
-        }
-      ]
+          "time": "13:30",
+          "items": [{ "title": "Emprendimiento en el mundo Nativo", "place": "Auditorio", "duration": [2,6]},
+          { "title": "Huawei", "place": "Sala de Usos Múltiples", "duration": [2,6] }]
+        },
+        {
+          "time": "15:00",
+          "items": []
+        },
+        {
+          "time": "17:00",
+          "items": [{ "title": "Taller de Comunicación Efectiva", "place": "-", "duration": [1,2] },
+          { "title": "Prototipado en Figma", "place": "-", "duration": [1,2] },
+          { "title": "Blender Desde Cero", "place": "-", "duration": [1,2] },
+          { "title": "ThreeJS", "place": "-", "duration": [1,1] },
+          { "title": "PMI Kickoff", "place": "-", "duration": [1,1] },
+          { "title": "Expresión Artística y Relajación con Lego", "place": "-", "duration": [1,2] },
+          { "title": "Bibliorelato", "place": "Auditorio", "duration": [1,2] }]
+        },
+        {
+          "time": "18:30",
+          "items": [{ "title": "Diálogo con Egresados", "place": "-", "duration": [2,12] }]
+        },
+        {
+          "time": "20:00",
+          "items": []
+        }]
     },
     {
       "day": "Miercoles",
       "events": [
         {
-          "time": "7:00",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
+          "time": "9:00",
+          "items": [{ "title": "Maestras Vs. Estudiantes", "place": "-", "duration": [3, 2] },
+          { "title": "Maestros Vs. Estudiantes", "place": "-", "duration": [3, 2] }]
         },
         {
-          "time": "7:30",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
+          "time": "10:00",
+          "items": [
+            { "title": "Taller de Fibra Óptica", "place": "Lab de Telecomunicaciones", "duration": [3,3] }
+          ]
         },
         {
-          "time": "8:00",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
+          "time": "10:30",
+          "items": [
+            { "title": "Tendencias de Tecnologías de la Información", "place": "Auditorio", "duration": [2,3] },
+          { "title": "Sabios Troyanos Vs. Alumnos", "place": "-", "duration": [2,3] }
+          ]
         },
         {
-          "time": "8:30",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
-        }
-      ]
+          "time": "12:00",
+          "items": [{ "title": "Procurement & IT", "place": "Sala de Usos Múltiples", "duration": [1,3] },
+          { "title": "Troyano Power", "place": "-", "duration": [1,1] }]
+        },
+        {
+          "time": "14:00",
+          "items": [{ "title": "Star Game Fut Beis", "place": "-", "duration": [1,12]}]
+        },
+        {
+          "time": "16:00",
+          "items": [{ "title": "Final de Torneo de Videojuegos", "place": "-", "duration": [1,12]}]
+        },
+        {
+          "time": "17:00",
+          "items": [
+          { "title": "Carrera Troyana", "place": "-", "duration": [1,12] }]
+        },
+        {
+          "time": "18:30",
+          "items": [{ "title": "Fiesta Synthwave y Fogata", "place": "-", "duration": [2,12] }]
+        },
+        {
+          "time": "21:00",
+          "items": []
+        }]
     },
     {
       "day": "Jueves",
       "events": [
         {
-          "time": "7:00",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
+          "time": "9:00",
+          "items": [{ "title": "Amazon", "place": "Sala de Usos Múltiples", "duration": [1, 12] }]
         },
         {
-          "time": "7:30",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
+          "time": "10:30",
+          "items": [{ "title": "Concurso de Talentos", "place": "Coliseo", "duration": [2, 12] }]
         },
         {
-          "time": "8:00",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
+          "time": "13:00",
+          "items": []
         },
         {
-          "time": "8:30",
-          "items": [{ "title": "Título de la conferencia", "place": "A01", "duration": 3 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 1 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 4 },
-          { "title": "Título de la conferencia", "place": "A01", "duration": 2 }]
-        }
-      ]
+          "time": "13:30",
+          "items": [{ "title": "Clausura", "place": "Coliseo", "duration": [1,12]}]
+        },
+        {
+          "time": "14:00",
+          "items": [{ "title": "Comida", "place": "Coliseo", "duration": [1,12]}]
+        }]
     }
   ]

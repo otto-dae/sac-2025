@@ -10,19 +10,17 @@ export async function GET(
   try {
     const { exp } = await params;
     const studentQr = await db
-      .select({
-        studentNumber: students.expediente,
-        lego_image: students.lego_image,
-      })
+      .select()
       .from(students)
       .where(eq(students.expediente, parseInt(exp)));
     if (studentQr.length === 0) {
       return NextResponse.json({ error: "Student not found" }, { status: 404 });
     }
-    const { studentNumber, lego_image } = studentQr[0];
+    const { expediente, lego_image, url_image } = studentQr[0];
     const response = {
-      expediente: studentNumber,
+      expediente: expediente,
       lego_image: lego_image,
+      url_image: url_image,
     };
     return NextResponse.json(response, { status: 200 });
   } catch (error: unknown) {
@@ -48,17 +46,39 @@ export async function POST(
         { status: 401 },
       );
     }
-    const studentQr = await db
-      .insert(students)
-      .values({
-        expediente: parseInt(exp),
-        lego_image: body.lego_image,
-      });
-    const response = {
-      message: "Image uploaded",
-      data: studentQr,
-    };
-    return NextResponse.json(response, { status: 201 });
+    const studentAlreadyExists = await db
+      .select()
+      .from(students)
+      .where(eq(students.expediente, parseInt(exp)))
+
+    if (studentAlreadyExists.length === 0) {
+      const studentQr = await db
+        .insert(students)
+        .values({
+          expediente: parseInt(exp),
+          url_image: body.url_image,
+          lego_image: body.lego_image,
+        });
+      const response = {
+        message: "Image uploaded",
+        data: studentQr,
+      };
+      return NextResponse.json(response, { status: 201 });
+    } else {
+      const studentQr = await db
+        .update(students)
+        .set({
+          lego_image: body.lego_image,
+          url_image: body.url_image,
+        })
+        .where(eq(students.expediente, parseInt(exp)))
+      const response = {
+        message: "Image updated",
+        data: studentQr,
+      }
+      return NextResponse.json(response, { status: 201 });
+    }
+
   } catch (error: unknown) {
     console.log(error);
     return NextResponse.json({ error: "Bad Request" }, { status: 400 });

@@ -70,22 +70,22 @@ const Schedule = () => {
                 return <Block key={index} hour={el.time} />;
               })}
 
-              <div className=" grid grid-span-12 grid-cols-12 col-start-2 row-start-1 row-span-12 grid-rows-subgrid relative">
+              <div className=" grid grid-span-12 grid-cols-12 col-start-2 row-start-1 row-span-12 grid-rows-subgrid relative divide-whitesac divide-y-4 divide-x-4 h-full w-full min-w-7xl">
                 {currentDay.events.map((el, index) => {
                   return el.items.map((item, subindex) => {
                     return (
                       <div
                         key={subindex}
-                        className={`text-center text-wrap w-fit m-1 p-2 justify-center flex flex-col ${
+                        className={`text-center text-wrap w-full justify-center flex flex-col col-auto ${
                           colorVars[index % 4]
                         }`}
                         style={{
-                          gridRow: `${index + 1} / span ${item.duration}`,
+                          gridRow: `${index + 1} / span ${item.duration[0]}`, gridColumn: `span ${item.duration[1]} / span ${item.duration[1]}`,
                         }}
                       >
-                        <div className="w-full h-full content-center">
+                        <div className="w-full h-full items-center flex justify-center flex-col gap-5">
                           <h3 className=" font-medium">{item.title}</h3>
-                          <p className="bg-whitesac rounded-4xl font-bold">
+                          <p className="bg-whitesac w-fit pr-5 pl-5 rounded-4xl font-bold">
                             {item.place}
                           </p>
                         </div>
