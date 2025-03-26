@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-1000">
-        <div id="navbar-container" className={`flex h-[8dvh] transition text-xl w-full content-center items-center justify-between bg-black`}>
+        <div id="navbar-container" className={`flex h-[8dvh] transition text-xl w-full content-center items-center justify-between bg-blacksac`}>
           <div className="hidden md:flex md:flex-row px-4 gap-4 md:w-fit md:h-fit">
             <NavbarButton text={"Inicio"} styling={""} imageUrl={"/homeIcon.png"} linkUrl={"/"} tStyling={""} width={45} height={90}/>
             <NavbarButton text={"Asistencia"} styling={""} imageUrl={"/AsistenciaIcon.png"} linkUrl={"/record"} tStyling={""} width={45} height={90}/>
@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
         onClick={toggleMenu}
       ></div>
 
-      <div className={`fixed top-0 left-0 w-64 h-full bg-bluesac z-101 md:hidden transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`fixed top-0 left-0 w-64 h-full bg-blacksac z-101 md:hidden transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="pt-24 px-4 flex flex-col gap-10">
           <div className="w-fit" onClick={closeMenu}>        
             <NavbarButton text={"Inicio"} styling={""} imageUrl={"/homeIcon.png"} linkUrl={"/"} tStyling={""} width={45} height={90}/>
