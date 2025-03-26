@@ -15,7 +15,7 @@ import hands from '@/assets/character-editor/body/hands.png';
 import { loadImage, applyInvertFilter, createSVG, createQRSVG, SVG_SLEEVE, SVG_TORSO } from '@/utils/canvasUtils';
 import { GlareCard } from '@/components/ui/glare-card';
 
-export default function Page() {
+export default function CardImagePage() {
     const scaleFactor = 0.75;
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const [canvasInstance, setCanvasInstance] = useState<StaticCanvas | null>(null);
@@ -133,11 +133,11 @@ export default function Page() {
                     qrSVG.set({ left: (210 * scaleFactor), top: (381 * scaleFactor), scaleX: (9 * scaleFactor), scaleY: (9 * scaleFactor) });
                     canvas.add(qrSVG);
                 }
-                
-                setCanvasInstance(canvas);
 
                 // Renderizar todo
                 canvas.renderAll();
+
+                setCanvasInstance(canvas);
             } catch (error) {
                 console.error(error);
             }
@@ -148,56 +148,22 @@ export default function Page() {
             canvas.add(img);
         };
 
-        loadAndDrawImages()
+        loadAndDrawImages();
 
         return () => {
             canvas.dispose(); // Cleanup
         };
-    }, [headId, headwearId, patternId, patternTone, playerColor, userId,]);
-        
-    const uploadImage = () => {
-        console.log('Uploading image...');
-        const dataUrl = canvasInstance?.toDataURL({ format: 'png', multiplier: 2 });
-        if (!dataUrl) return;
-        console.log('dataUrl: ', dataUrl);
-        fetch(`/api/qr-image/${userId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                lego_image: dataUrl,
-                nombre: 'QR'
-            })
-        }).then(async (res) => {
-            const data = await res.json();
-            console.log(data);
-        }).catch((err) => {
-            console.error(err);
-        });
-    };
+    }, [headId, headwearId, patternId, patternTone, playerColor, userId]);
 
     const downloadImage = (dataUrl: string) => {
         const a = document.createElement('a');
         a.href = dataUrl;
         a.download = 'qr-sac.png';
         a.click();
-
-        uploadImage();
     }
 
     return (
         <div className=' w-full min-h-fit h-screen p-5 gap-5 bg-blacksac flex flex-col items-center'>
-            <button
-                onClick={() => uploadImage()}
-                className="w-full md:w-fit relative inline-flex h-12 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
-            >
-                <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#F59CA9_0%,#DF57BC_50%,#F59CA9_100%)]" />
-                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-8 py-1 text-sm font-medium text-white backdrop-blur-3xl">
-                    Subir Imagen
-                </span>
-            </button>
-
             <button
                 onClick={() => downloadImage(canvasInstance?.toDataURL({ format: 'png', multiplier: 2 }) || '')}
                 className="w-full md:w-fit relative inline-flex h-12 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
