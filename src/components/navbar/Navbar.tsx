@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50">
+      <header className="fixed top-0 left-0 right-0 z-[10000]">
         <div id="navbar-container" className={`flex h-[8dvh] transition text-xl w-full content-center items-center justify-between bg-black`}>
           <div className="hidden md:flex md:flex-row px-4 gap-4 md:w-fit md:h-fit">
             <NavbarButton text={"Inicio"} styling={""} imageUrl={"/homeIcon.png"} linkUrl={"/"} tStyling={""} width={45} height={90}/>
