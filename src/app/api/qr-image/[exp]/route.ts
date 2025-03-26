@@ -52,8 +52,8 @@ export async function POST(
       .select()
       .from(students)
       .where(eq(students.expediente, parseInt(exp)))
-      
-    if (!studentAlreadyExists) {
+
+    if (studentAlreadyExists.length === 0) {
       const studentQr = await db
         .insert(students)
         .values({
