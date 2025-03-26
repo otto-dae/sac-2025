@@ -1,7 +1,7 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import React, { useState, useRef, useEffect } from "react";
 import { parseColor } from "@react-stately/color";
 import { ColorPicker } from "@/components/ui";
@@ -16,8 +16,9 @@ import { patternThumbnails } from "@/components/character-editor/pattern-thumbna
 import torso from "@/assets/character-editor/body/torso.png";
 import hands from "@/assets/character-editor/body/hands.png";
 
-// TODO: use the correct userid
-export default function Page() {
+export default function Page() {  
+  const params = useParams();
+  const exp = params.exp as string;
   const router = useRouter();
   const soundRefs = useRef<Howl[]>([]);
   const popSound = "/media/happy-pop-2-185287.mp3";
@@ -81,7 +82,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className='flex flex-col px-2 md:px-4 items-center justify-center h-[92vh] space-y-4 bg-[url("/bg-character-editor.png")] bg-cover select-text'>
+    <div className='flex flex-col px-2 md:px-4 items-center justify-center h-[92dvh] space-y-4 bg-[url("/bg-character-editor.png")] bg-cover select-text'>
       {/* Color selector */}
       <div className="w-full md:w-1/2 relative flex justify-center space-x-4">
         <div className="absolute top-4 right-0 flex space-x-4 z-60">
@@ -280,11 +281,19 @@ export default function Page() {
           type="button"
           onClick={() =>
             router.push(
-              `/character-editor/${selectedParts.head.id}/${
+              `/cardgenerator/${
+                exp
+              }/${
+                selectedParts.head.id
+              }/${
                 selectedParts.headwear?.id
-              }/${selectedParts.clothe?.id}/${
+              }/${
+                selectedParts.clothe?.id
+              }/${
                 color.toString("hex").split("#")[1]
-              }/${semantic}/276396`
+              }/${
+                semantic
+              }`
             )
           }
           className="w-full md:w-auto flex group items-center justify-center gap-2 bg-blacksac text-white font-bold py-2 px-4 rounded-full uppercase cursor-pointer transition-all duration-200 hover:text-yellow-300 hover:scale-105"

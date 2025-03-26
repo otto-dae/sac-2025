@@ -112,7 +112,7 @@ export default function CustomLoader() {
   if (!isClient) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-50 z-[2000]">
       <div
         ref={gridRef}
         className="grid grid-cols-[repeat(5,minmax(0,1fr))] lg:grid-cols-[repeat(10,minmax(0,1fr))] grid-rows-[repeat(5,minmax(0,1fr))] lg:grid-rows-[repeat(10,minmax(0,1fr))] w-full h-full gap-1 p-1"

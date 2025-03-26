@@ -21,7 +21,7 @@ export default function Page() {
     const [canvasInstance, setCanvasInstance] = useState<StaticCanvas | null>(null);
     const params = useParams();
     const qrgenerator = params.qrgenerator as string[];
-    const [headwearId, headId, patternId, playerColor, patternTone, userId] = qrgenerator;
+    const [userId, headwearId, headId, patternId, playerColor, patternTone] = qrgenerator;
 
     useEffect(() => {
         const partCategories = [headParts, headwearParts, patternParts];
@@ -94,12 +94,23 @@ export default function Page() {
                 }
 
                 // Textos
+                const urlMap = {
+                    CeraPro: 'url("/fonts/cera-pro/CeraPro-Bold.woff")'
+                }
+
+                const fontCera = await new FontFace('CeraPro', urlMap.CeraPro, {
+                    style: 'normal',
+                    weight: 'normal'
+                }).load()
+                
+
+                document.fonts.add(fontCera)
                 const text1 = new FabricText(userId, {
                     left: (50 * scaleFactor),
                     top: (555 * scaleFactor),
                     fontSize: (50 * scaleFactor),
                     fill: 'black',  // Color del texto
-                    fontFamily: 'Cera Pro', // Fuente,
+                    fontFamily: 'CeraPro', // Fuente,
                     fontWeight: 'bold',
                     angle: 270
                 });
@@ -109,7 +120,7 @@ export default function Page() {
                     top: (390 * scaleFactor),
                     fontSize: (50 * scaleFactor),
                     fill: 'black',  // Color del texto
-                    fontFamily: 'Cera Pro', // Fuente,
+                    fontFamily: 'CeraPro', // Fuente,
                     fontWeight: 'bold',
                     angle: 90
                 });
@@ -154,7 +165,7 @@ export default function Page() {
     return (
         <div className=' w-full min-h-fit h-screen p-5 gap-5 bg-blacksac flex flex-col items-center'>
             <button
-                onClick={() => downloadImage(canvasInstance?.toDataURL({ format: 'png', multiplier: 1 }) || '')}
+                onClick={() => downloadImage(canvasInstance?.toDataURL({ format: 'png', multiplier: 2 }) || '')}
                 className="w-full md:w-fit relative inline-flex h-12 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50"
             >
                 <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />

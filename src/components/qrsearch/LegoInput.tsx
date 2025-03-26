@@ -21,7 +21,7 @@ const LegoInput: React.FC<LegoInputProps> = ({
   const [isFocused, setIsFocused] = useState(false);
   const [isClient, setIsClient] = useState(false);  // New state to check if we are on the client
   const soundRefs = useRef<Howl[]>([]);
-  const blockSound = "/media/lego-building-classic-208359.mp3";
+  const activeSounds = useRef<Map<number, Howl>>(new Map());
 
   // Check if the code is running on the client side
   useEffect(() => {
@@ -30,16 +30,16 @@ const LegoInput: React.FC<LegoInputProps> = ({
 
   // Handle sound effects setup only on the client side
   useEffect(() => {
+    const soundFiles = [
+      "/media/lego-sound-1.mp3",
+      "/media/lego-sound-2.mp3",
+      "/media/lego-sound-3.mp3",
+      "/media/lego-sound-4.mp3",
+    ];
+
     if (!isClient) return; // Avoid running this on the server
 
-    soundRefs.current = Array.from(
-      { length: 10 },
-      () =>
-        new Howl({
-          src: [blockSound],
-          html5: true,
-        })
-    );
+    soundRefs.current = soundFiles.map((src) => new Howl({ src: [src] , html5: true }));
 
     return () => {
       soundRefs.current.forEach((sound) => sound.unload());
@@ -50,25 +50,35 @@ const LegoInput: React.FC<LegoInputProps> = ({
     setInputValue(value.split(""));
   }, [value]);
 
-  const handleInputChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const key = e.key;
-
-    if (key === "Backspace" && inputValue.length > 0) {
-      const newValue = inputValue.slice(0, -1);
-      if (soundRefs.current[Number(inputValue[inputValue.length - 1])]) {
-        soundRefs.current[Number(inputValue[inputValue.length - 1])].stop();
+  const handleTextInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value.replace(/\D/g, ""); // Solo números
+    const digits = newValue.split("").slice(0, maxLength);
+  
+    // Identificar índices eliminados
+    const removedIndexes = inputValue
+      .map((_, index) => (digits[index] !== inputValue[index] ? index : null))
+      .filter((index): index is number => index !== null);
+  
+    // Detener sonidos de los índices eliminados
+    removedIndexes.forEach((index) => {
+      const sound = activeSounds.current.get(index);
+      if (sound) {
+        sound.stop();
+        activeSounds.current.delete(index);
       }
-      setInputValue(newValue);
-      onChange?.(newValue.join(""));
-    } else if (!isNaN(Number(key)) && inputValue.length < maxLength) {
-      const newValue = [...inputValue, key];
-      if (soundRefs.current[Number(key)]) {
-        soundRefs.current[Number(key)].play();
-      }
-      setInputValue(newValue);
-      onChange?.(newValue.join(""));
+    });
+  
+    setInputValue(digits);
+    onChange?.(digits.join(""));
+  
+    // Si se agregó un número, reproducir un sonido aleatorio
+    if (digits.length > inputValue.length) {
+      const lastDigitIndex = digits.length - 1;
+      const randomSound = soundRefs.current[Math.floor(Math.random() * soundRefs.current.length)];
+      randomSound.play();
+      activeSounds.current.set(lastDigitIndex, randomSound);
     }
-  };
+  };  
 
   if (!isClient) {
     return null; // Prevent rendering on the server
@@ -111,9 +121,8 @@ const LegoInput: React.FC<LegoInputProps> = ({
         autoFocus
         type="text"
         maxLength={maxLength}
-        onKeyDown={handleInputChange}
+        onChange={(e) => handleTextInput(e)}
         value={inputValue.join("")}
-        readOnly
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         className="absolute w-[78vw] max-w-157 h-[16vw] max-h-32 opacity-0"

@@ -1,29 +1,21 @@
-"use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import useRecord from "@/hooks/useRecord";
 
 const LegoModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [expediente, setExpediente] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const { fetchExpediente, loading, error, data } = useRecord();
 
   const handleSearch = async () => {
-    if (!expediente.trim()) return;
-  
-    setLoading(true);
-    setError("");
-  
-    setTimeout(() => {
-      setLoading(false);
-      if (expediente === "123") {
-        setIsOpen(true);  
-      } else {
-        setError("Expediente no encontrado");
-        setExpediente(""); // Reset input
-      }
-    }, 2000);
+    await fetchExpediente(expediente);
   };
+
+  React.useEffect(() => {
+    if (data) {
+      setIsOpen(true);
+    }
+  }, [data]);
 
   const closeModal = () => {
     setIsOpen(false);

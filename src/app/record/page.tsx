@@ -7,7 +7,7 @@ import AttendanceSheet from '@/components/attendance/AttendanceSheet';
 export default function Record() {
   const [screenWidth, setScreenWidth] = useState<number>(0);
   const [eyePosition, setEyePosition] = useState({ x: 0, y: 0 });
-
+  
   useEffect(() => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
@@ -60,7 +60,7 @@ export default function Record() {
   };  
 
   return (
-    <div className="relative min-h-screen w-screen flex flex-col items-center justify-center">
+    <div className="relative min-h-screen w-full overflow-clip flex flex-col items-center justify-center">
       {/* Imagen de fondo */}
       <Image
         src="/Attendance.png"
