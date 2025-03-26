@@ -24,6 +24,10 @@ const Navbar: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () =>{
+    setIsMenuOpen(false);
+  }
+
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-1000">
@@ -41,11 +45,11 @@ const Navbar: React.FC = () => {
             </button>
           </div>
 
-          <Link href={"/"} className="px-2">
+          <Link href={"/"} className="px-2" onClick={closeMenu}>
             <Image className="transition-all duration-100 hover:scale-106" src={"/SACIcon.png"} alt={"Sac Icon"} width={100} height={100}/>
           </Link>
 
-          <div className="px-4">
+          <div className="px-4" onClick={closeMenu}>
             <NavbarButton 
               text={"Generar qr"} 
               styling={`md:border-2 md:border-whitesac md:rounded-full md:px-6 md:py-1 text-white`} 
@@ -68,10 +72,10 @@ const Navbar: React.FC = () => {
 
       <div className={`fixed top-0 left-0 w-64 h-full bg-bluesac z-101 md:hidden transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="pt-24 px-4 flex flex-col gap-10">
-          <div className="w-fit">        
+          <div className="w-fit" onClick={closeMenu}>        
             <NavbarButton text={"Inicio"} styling={""} imageUrl={"/homeIcon.png"} linkUrl={"/"} tStyling={""} width={45} height={90}/>
           </div>
-          <div className="w-fit">        
+          <div className="w-fit" onClick={closeMenu}>        
             <NavbarButton text={"Asistencia"} styling={""} imageUrl={"/AsistenciaIcon.png"} linkUrl={"/record"} tStyling={""} width={45} height={90}/>
           </div>
         </div>
