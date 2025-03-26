@@ -162,7 +162,6 @@ export default function Page() {
         setIsLoading(true);
         const dataUrl = canvasInstance?.toDataURL({ format: 'png', multiplier: 2 });
         if (!dataUrl) return;
-        console.log('dataUrl: ', dataUrl);
         fetch(`/api/qr-image/${userId}`, {
             method: 'POST',
             headers: {

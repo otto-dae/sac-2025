@@ -8,7 +8,7 @@ export const Alert = () => {
     }
 
     return(
-        <div className={`w-full text-white bg-yellow-400 ${isHidden ? 'hidden' : ''}`}>
+        <div className={`w-full text-white bg-blue-500 ${isHidden ? 'hidden' : ''}`}>
             <div className="container flex items-center justify-between px-6 py-4 mx-auto">
                 <div className="flex">
                     <svg viewBox="0 0 40 40" className="w-6 h-6 fill-current">
@@ -16,7 +16,7 @@ export const Alert = () => {
                         </path>
                     </svg>
         
-                    <p className="mx-3">¡No olvides registrar la imagen de tu QR! Esto nos permitirá imprimir tu tarjeta ;&#41;</p>
+                    <p className="mx-3">Registra tu tarjeta y úsala a lo largo de las diversas actividades. No olvides compartirla en Instagram y etiquetar a la facultad ;&#41;</p>
                 </div>
         
                 <button
