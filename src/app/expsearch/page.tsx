@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from 'next/dynamic';
+import Swal from 'sweetalert2';
 
 const DynamicLego = dynamic(
   () => import('@/components/qrsearch/LegoInput'),
@@ -16,9 +17,42 @@ export default function Page() {
 
   const codeHandler = (code: string) => {
     if (code.length !== 6) return;
-
     setIsLoading(true);
-    router.push(`/charactereditor/${code}`);
+
+    // Fetch the student data
+    fetch(`/api/records/${code}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          Swal.fire({
+            icon: 'warning',
+            title: `¿Estás seguro que deseas registrar el expediente ${code}?`,
+            text: 'Una vez creado el QR, no podrás modificarlo',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, registrar',
+            cancelButtonText: 'Cancelar',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              router.push(`/charactereditor/${code}`);
+            }
+          });
+
+          setIsLoading(false);
+          return;
+        }
+
+        router.push(`/charactereditor/${code}`);
+      })
+      .catch((err) => {
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al buscar el expediente',
+          text: 'Por favor, intenta de nuevo',
+          confirmButtonText: 'Entendido',
+        });
+        setIsLoading(false);
+      });
   };
 
   return (
