@@ -1,7 +1,7 @@
 export interface ScheduleItem {
     title: string
     place: string
-    duration: number
+    duration: number[]
 }
 
 export interface ScheduleRow {

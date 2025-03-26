@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
+import Loader from "@/components/loading/Loader";
 
 export const metadata: Metadata = {
   title: "SAC-2025",
@@ -14,10 +15,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className=" overflow-x-hidden">
+    <html lang="en" className=" overflow-x-hidden scroll-smooth">
       <body>
-          <Navbar />
-          {children}
+        <Loader />
+        <Navbar />
+        {children}
       </body>
     </html>
   );
