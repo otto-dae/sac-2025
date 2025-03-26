@@ -1,12 +1,11 @@
-"use client";
+'use client';
 
-import Image, { StaticImageData } from "next/image";
+import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import React, { useState, useRef, useEffect } from "react";
-import { parseColor } from "@react-stately/color";
-import { ColorPicker } from "@/components/ui";
-import { Howl } from "howler";
+import CardImagePage  from "@/components/card-generator/CardImagePage";
+import CharacterEditorPage from "@/components/character-editor/CharacterEditorPage";
 
+<<<<<<< HEAD
 import { headwearParts } from "@/components/character-editor/headwear-parts";
 import { headwearThumbnails } from "@/components/character-editor/headwear-thumbnails";
 import { headParts } from "@/components/character-editor/head-parts";
@@ -18,72 +17,38 @@ import hands from "@/assets/character-editor/body/hands.png";
 import Loader from "@/components/loading/Loader";
 
 export default function Page() {
+=======
+export default function Page() {
+  const [renderPage, setRenderPage] = useState<'editor' | 'card' | 'loading'>('loading');
+  const router = useRouter();
+>>>>>>> 4218ea5e1acd8cd8c62ed0ce81bbc9e116a6175a
   const params = useParams();
   const exp = params.exp as string;
-  const router = useRouter();
-  const soundRefs = useRef<Howl[]>([]);
-  const popSound = "/media/happy-pop-2-185287.mp3";
-  const [selectedCategory, setSelectedCategory] = useState<
-    "head" | "headwear" | "clothe"
-  >("head");
-  const [semantic, setSemantic] = useState<"white" | "black">("white");
-  const [color, setColor] = useState(parseColor("#002966"));
-  const characterParts = {
-    // add thumbnails for the parts
-    head: headParts.map((part, i) => ({
-      ...part,
-      thumbnail: headThumbnails[i].src,
-    })),
-    headwear: headwearParts.map((part, i) => ({
-      ...part,
-      thumbnail: headwearThumbnails[i].src,
-    })),
-    clothe: patternParts.map((part, i) => ({
-      ...part,
-      thumbnail: patternThumbnails[i].src,
-    })),
-  };
-  const [selectedParts, setSelectedParts] = useState({
-    head: headParts[0],
-    headwear: headwearParts[0],
-    clothe: patternParts[0],
-  });
-
-  const handlePartSelection = (
-    category: "head" | "headwear" | "clothe",
-    part: {
-      id: number;
-      src: StaticImageData;
-      thumbnail: StaticImageData;
-    } | null
-  ) => {
-    soundRefs.current[0].play();
-    setSelectedParts({ ...selectedParts, [category]: part });
-  };
-
-  const categories: { key: "clothe" | "head" | "headwear"; src: string }[] = [
-    { key: "head", src: "/head-icon.png" },
-    { key: "clothe", src: "/shirt-icon.png" },
-    { key: "headwear", src: "/hair-icon.png" },
-  ];
 
   useEffect(() => {
-    soundRefs.current = Array.from(
-      { length: 10 },
-      () =>
-        new Howl({
-          src: [popSound],
-          html5: true,
-        })
-    );
+    if (!exp) {
+      router.push('/');
+      return;
+    }
 
-    return () => {
-      soundRefs.current.forEach((sound) => sound.unload());
-    };
-  }, []);
+    fetch(`/api/qr-image/${exp}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          setRenderPage('editor');
+          return;
+        }
+        setRenderPage('card');
+      })
+      .catch((err) => {
+        console.error(err);
+        router.push('/error');
+      });
+  }, [exp, router]);
 
   return (
     <>
+<<<<<<< HEAD
       <Loader />
       <div className='flex flex-col px-2 md:px-4 items-center justify-center h-[92dvh] space-y-4 bg-[url("/bg-character-editor.png")] bg-cover select-text'>
         {/* Color selector */}
@@ -317,6 +282,12 @@ export default function Page() {
           </button>
         </div>
       </div>
+=======
+      {renderPage === 'loading' && <div>Loading...</div>}
+      {renderPage === 'editor' && <CharacterEditorPage exp={exp} />}
+      {/* TODO: Fix this */}
+      {renderPage === 'card' && <CardImagePage/> }
+>>>>>>> 4218ea5e1acd8cd8c62ed0ce81bbc9e116a6175a
     </>
   );
 }

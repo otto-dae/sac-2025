@@ -21,6 +21,7 @@ const LegoInput: React.FC<LegoInputProps> = ({
   const [isFocused, setIsFocused] = useState(false);
   const [isClient, setIsClient] = useState(false);  // New state to check if we are on the client
   const soundRefs = useRef<Howl[]>([]);
+  const delteSound = useRef<Howl>(new Howl({ src: ["/media/lego-delete.mp3"], html5: true }));
   const activeSounds = useRef<Map<number, Howl>>(new Map());
 
   // Check if the code is running on the client side
@@ -30,6 +31,9 @@ const LegoInput: React.FC<LegoInputProps> = ({
 
   // Handle sound effects setup only on the client side
   useEffect(() => {
+    const deleteSoundRef = delteSound.current;
+    if (!isClient) return; // Avoid running this on the server
+
     const soundFiles = [
       "/media/lego-sound-1.mp3",
       "/media/lego-sound-2.mp3",
@@ -37,12 +41,11 @@ const LegoInput: React.FC<LegoInputProps> = ({
       "/media/lego-sound-4.mp3",
     ];
 
-    if (!isClient) return; // Avoid running this on the server
-
     soundRefs.current = soundFiles.map((src) => new Howl({ src: [src] , html5: true }));
 
     return () => {
       soundRefs.current.forEach((sound) => sound.unload());
+      deleteSoundRef.unload();
     };
   }, [isClient]);
 
@@ -65,6 +68,7 @@ const LegoInput: React.FC<LegoInputProps> = ({
       if (sound) {
         sound.stop();
         activeSounds.current.delete(index);
+        delteSound.current.play();
       }
     });
   
