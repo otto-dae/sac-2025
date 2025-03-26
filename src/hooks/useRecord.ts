@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-type ExpedienteData = any; 
+type ExpedienteData = number;
 
 const useRecord = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -16,12 +16,12 @@ const useRecord = () => {
 
     try {
       const response = await fetch(`http://localhost:3000/api/records/${expediente}`);
-      const result: ExpedienteData = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.message || "Error al buscar expediente");
+        throw new Error(response.statusText || "Error al buscar expediente");
       }
-      
+
+      const result: ExpedienteData = await response.json();
       setData(result);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Error desconocido");
