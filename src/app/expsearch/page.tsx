@@ -25,9 +25,9 @@ export default function Page() {
       .then((data) => {
         if (data.error) {
           Swal.fire({
-            icon: "warning",
-            title: `¿Estás seguro que éste es tu expediente?`,
-            text: code,
+            icon: 'warning',
+            title: code,
+            text: '¿Estás seguro que éste es tu expediente?',
             showCancelButton: true,
             confirmButtonText: "Sí, registrar",
             cancelButtonText: "Cancelar",
@@ -59,10 +59,10 @@ export default function Page() {
       .catch((err) => {
         console.error(err);
         Swal.fire({
-          icon: "error",
-          title: "Error al buscar el expediente",
-          text: "Por favor, intenta de nuevo",
-          confirmButtonText: "Entendido",
+          icon: 'error',
+          title: 'Error de conexión',
+          text: 'Por favor, intenta de nuevo',
+          confirmButtonText: 'Entendido',
         });
         setIsLoading(false);
       });
