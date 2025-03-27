@@ -245,6 +245,7 @@ export default function Page() {
 
         return () => {
             canvas.dispose(); // Cleanup
+            mobileCanvas.dispose(); // Cleanup
         };
     }, [headId, headwearId, patternId, patternTone, playerColor, userId,]);
         
@@ -302,7 +303,7 @@ export default function Page() {
     };
 
     return (
-        <div className='w-full min-h-fit h-[92dvh] pb-5 gap-5 bg-blacksac flex flex-col items-center'>
+        <div className='w-full min-h-fit h-dvh pb-5 gap-5 bg-blacksac flex flex-col items-center'>
             <Alert />
             <div className='flex flex-col md:flex-row h-fit w-full md:w-108 px-5 pt-5 md:px-0 gap-5 justify-between'>
                 <button
