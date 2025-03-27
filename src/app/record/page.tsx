@@ -8,7 +8,7 @@ import Loader from "@/components/loading/Loader";
 export default function Record() {
   const [screenWidth, setScreenWidth] = useState<number>(0);
   const [eyePosition, setEyePosition] = useState({ x: 0, y: 0 });
-
+  
   useEffect(() => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
