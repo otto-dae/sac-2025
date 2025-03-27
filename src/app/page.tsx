@@ -7,17 +7,15 @@ import Loader from "@/components/loading/Loader";
 
 export default function Home() {
   return (
-    <>
+    <div className=" overflow-hidden ">
       <Loader />
-      <div className=" overflow-hidden ">
-        <main className="pt-22 bg-[auto_70%] bg-repeat bg-[url('../../public/backgroundLanding.jpg')]">
-          <Hero />
-          <About />
-          <Schedule />
-          <Speakers />
-          <Footer />
-        </main>
-      </div>
-    </>
+      <main className="pt-22 bg-[auto_70%] bg-repeat bg-[url('../../public/backgroundLanding.jpg')]">
+        <Hero />
+        <About />
+        <Schedule />
+        <Speakers />
+        <Footer />
+      </main>
+    </div>
   );
 }

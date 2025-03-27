@@ -62,7 +62,7 @@ export default function Record() {
 
   return (
     <>
-      <Loader />
+      <Loader />{" "}
       <div className="relative min-h-screen w-full overflow-clip flex flex-col items-center justify-center">
         {/* Imagen de fondo */}
         <Image

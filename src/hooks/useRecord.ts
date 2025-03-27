@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+//Pa no morir ignorado
 type ExpedienteData = number;
 
 const useRecord = () => {
