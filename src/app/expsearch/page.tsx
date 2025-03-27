@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import Swal from "sweetalert2";
-import Loader from "@/components/loading/Loader";
 
 const DynamicLego = dynamic(() => import("@/components/qrsearch/LegoInput"), {
   ssr: false,
@@ -25,9 +24,9 @@ export default function Page() {
       .then((data) => {
         if (data.error) {
           Swal.fire({
-            icon: 'warning',
+            icon: "warning",
             title: code,
-            text: '¿Estás seguro que éste es tu expediente?',
+            text: "¿Estás seguro que éste es tu expediente?",
             showCancelButton: true,
             confirmButtonText: "Sí, registrar",
             cancelButtonText: "Cancelar",
@@ -41,6 +40,7 @@ export default function Page() {
           return;
         }
 
+        setIsLoading(false);
         Swal.fire({
           icon: "info",
           title: "Expediente encontrado",
@@ -59,52 +59,49 @@ export default function Page() {
       .catch((err) => {
         console.error(err);
         Swal.fire({
-          icon: 'error',
-          title: 'Error de conexión',
-          text: 'Por favor, intenta de nuevo',
-          confirmButtonText: 'Entendido',
+          icon: "error",
+          title: "Error de conexión",
+          text: "Por favor, intenta de nuevo",
+          confirmButtonText: "Entendido",
         });
         setIsLoading(false);
       });
   };
 
   return (
-    <>
-      <Loader />
-      <div className="w-full h-full bg-whitesac">
-        <div className="w-full h-[92dvh] flex items-center justify-center bg-[url(/bg-qrSearch.png)] bg-cover bg-no-repeat">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              codeHandler(code);
-            }}
-            className="p-8 gap-4 flex flex-col items-center justify-center rounded-2xl bg-whitesac"
-          >
-            <h1 className="text-2xl font-bold">¿Cuál es tu expediente?</h1>
-            <DynamicLego value={code} onChange={setCode} maxLength={6} />
-            <div className="w-full flex justify-end">
-              <button
-                type="submit"
-                className={`w-full md:w-fit bg-blue-400 py-2 px-6 font-bold text-lg text-white rounded-2xl transition-all flex items-center justify-center
+    <div className="w-full h-full relative bg-linear-180 from-white to-sky-400">
+      <div className="w-full h-[92dvh] flex items-center justify-center">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            codeHandler(code);
+          }}
+          className="p-8 gap-4 flex flex-col items-center justify-center rounded-2xl bg-whitesac"
+        >
+          <h1 className="text-2xl font-bold">¿Cuál es tu expediente?</h1>
+          <DynamicLego value={code} onChange={setCode} maxLength={6} />
+          <div className="w-full flex justify-end">
+            <button
+              type="submit"
+              className={`w-full md:w-fit bg-blue-400 py-2 px-6 font-bold text-lg text-white rounded-2xl transition-all flex items-center justify-center
                 ${
                   code.length === 6 && !isLoading
                     ? "cursor-pointer hover:scale-105"
                     : "cursor-not-allowed opacity-50"
                 }`}
-                disabled={code.length !== 6 || isLoading}
-              >
-                {isLoading ? (
-                  <div className="flex items-center gap-2">
-                    <span className="loader"></span> Cargando...
-                  </div>
-                ) : (
-                  "Buscar"
-                )}
-              </button>
-            </div>
-          </form>
-        </div>
+              disabled={code.length !== 6 || isLoading}
+            >
+              {isLoading ? (
+                <div className="flex items-center gap-2">
+                  <span className="loader"></span> Cargando...
+                </div>
+              ) : (
+                "Buscar"
+              )}
+            </button>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 }

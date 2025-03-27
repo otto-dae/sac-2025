@@ -8,7 +8,7 @@ const Loader = () => {
 
   useEffect(() => {
     const loadData = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 5000));
+      await new Promise((resolve) => setTimeout(resolve, 4000));
       setIsLoading(false);
     };
 
