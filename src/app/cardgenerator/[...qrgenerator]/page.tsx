@@ -15,7 +15,6 @@ import hands from '@/assets/character-editor/body/hands.png';
 
 import { loadImage, applyInvertFilter, createSVG, createQRSVG, SVG_SLEEVE, SVG_TORSO } from '@/utils/canvasUtils';
 import { GlareCard } from '@/components/ui/glare-card';
-import Alert from '@/components/card-generator/Alert';
 
 export default function Page() {
     const scaleFactor = 0.75;
@@ -304,7 +303,6 @@ export default function Page() {
 
     return (
         <div className='w-full min-h-fit h-dvh pb-5 gap-5 bg-blacksac flex flex-col items-center'>
-            <Alert />
             <div className='flex flex-col md:flex-row h-fit w-full md:w-108 px-5 pt-5 md:px-0 gap-5 justify-between'>
                 <button
                     onClick={() => uploadImage()}
