@@ -16,7 +16,7 @@ export const Alert = () => {
                         </path>
                     </svg>
         
-                    <p className="mx-3">Registra tu tarjeta y úsala a lo largo de las diversas actividades. No olvides compartirla en Instagram y etiquetar a la facultad ;&#41;</p>
+                    <p className="mx-3">Registra tu tarjeta y úsala a lo largo de las diversas actividades. No olvides compartirla en Instagram y etiquetar a la Facultad ;&#41;</p>
                 </div>
         
                 <button
