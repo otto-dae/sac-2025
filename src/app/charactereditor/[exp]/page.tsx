@@ -16,7 +16,8 @@ import { patternThumbnails } from "@/components/character-editor/pattern-thumbna
 import torso from "@/assets/character-editor/body/torso.png";
 import hands from "@/assets/character-editor/body/hands.png";
 
-export default function Page() {  
+export default function Page() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const params = useParams();
   const exp = params.exp as string;
   const router = useRouter();
@@ -66,6 +67,17 @@ export default function Page() {
     { key: "headwear", src: "/hair-icon.png" },
   ];
 
+  const finishCharacter = () => {
+    setIsLoading(true);
+    router.push(
+      `/cardgenerator/${exp}/${selectedParts.head.id}/${
+        selectedParts.headwear?.id
+      }/${selectedParts.clothe?.id}/${
+        color.toString("hex").split("#")[1]
+      }/${semantic}`
+    );
+  };
+
   useEffect(() => {
     soundRefs.current = Array.from(
       { length: 10 },
@@ -82,7 +94,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className='flex flex-col px-2 md:px-4 items-center justify-center h-[92dvh] space-y-4 bg-[url("/bg-character-editor.png")] bg-cover select-text'>
+    <div className='flex flex-col px-2 md:px-4 items-center justify-center h-[92dvh] space-y-4 bg-[url("/CharacterEditorBg.svg")] bg-cover select-text'>
       {/* Color selector */}
       <div className="w-full md:w-1/2 relative flex justify-center space-x-4">
         <div className="absolute top-4 right-0 flex space-x-4 z-60">
@@ -115,7 +127,11 @@ export default function Page() {
       {/* Character Preview */}
       <div className="relative w-full md:w-2/3 xl:w-1/3 h-[40vh] md:h-1/2">
         <div className="absolute inset-x-0 -top-3 z-50">
-          <Image src={hands} className="w-full aspect-square" alt="Hands preview" />
+          <Image
+            src={hands}
+            className="w-full aspect-square"
+            alt="Hands preview"
+          />
         </div>
         {selectedParts.headwear && (
           <div className="absolute inset-x-0 -top-3 z-40">
@@ -191,7 +207,11 @@ export default function Page() {
           </svg>
         </div>
         <div className="absolute inset-x-0 -top-3 z-0">
-          <Image src={torso} className="w-full aspect-square" alt="Body preview" />
+          <Image
+            src={torso}
+            className="w-full aspect-square"
+            alt="Body preview"
+          />
         </div>
       </div>
 
@@ -203,7 +223,9 @@ export default function Page() {
             <button
               key={category.key}
               className={`p-2 rounded-full transition-all hover:scale-105 ${
-                selectedCategory === category.key ? "bg-yellow-300" : "bg-white"
+                selectedCategory === category.key
+                  ? "bg-yellow-300"
+                  : "bg-white"
               }`}
               onClick={() => setSelectedCategory(category.key)}
             >
@@ -221,7 +243,8 @@ export default function Page() {
       {/* Options Grid */}
       <div className="w-full md:w-2/3 xl:w-1/2 h-[40vh] md:h-1/3 grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 place-items-center overflow-auto scrollbar p-4 gap-4 bg-white border-2 border-blacksac z-60 rounded-4xl">
         {/* Delete option on headwear and clothe */}
-        {(selectedCategory === "headwear" || selectedCategory === "clothe") && (
+        {(selectedCategory === "headwear" ||
+          selectedCategory === "clothe") && (
           <div
             className="w-24 h-24 p-3 border-2 rounded-lg grid grid-template-stack items-start cursor-pointer transition-all duration-300 border-gray-200 hover:border-yellow-300 hover:scale-105"
             onClick={() => handlePartSelection(selectedCategory, null)}
@@ -279,35 +302,26 @@ export default function Page() {
       <div className="w-full md:w-2/3 xl:w-1/2 mb-4 flex justify-end">
         <button
           type="button"
-          onClick={() =>
-            router.push(
-              `/cardgenerator/${
-                exp
-              }/${
-                selectedParts.head.id
-              }/${
-                selectedParts.headwear?.id
-              }/${
-                selectedParts.clothe?.id
-              }/${
-                color.toString("hex").split("#")[1]
-              }/${
-                semantic
-              }`
-            )
-          }
-          className="w-full md:w-auto flex group items-center justify-center gap-2 bg-blacksac text-white font-bold py-2 px-4 rounded-full uppercase cursor-pointer transition-all duration-200 hover:text-yellow-300 hover:scale-105"
+          onClick={() => finishCharacter()}
+          className={`w-full md:w-auto flex group items-center justify-center gap-2 bg-blacksac text-white font-bold py-2 px-4 rounded-full uppercase cursor-pointer transition-all duration-200 hover:text-yellow-300 hover:scale-105 ${
+            isLoading ? "cursor-not-allowed opacity-50" : ""
+          }`}
+          disabled={isLoading}
         >
           ¡Terminé!
-          <svg
-            className="w-4 h-4 fill-white transition-all duration-200 group-hover:fill-yellow-300 group-hover:scale-105"
-            viewBox="0 0 33 38"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M25.5 0.5H7.5V6.5H25.5V0.5Z" />
-            <path d="M33 6.5H0V37.5H33V6.5Z" />
-          </svg>
+          {isLoading ? (
+            <span className="loader"></span>
+          ) : (
+            <svg
+              className="w-4 h-4 fill-white transition-all duration-200 group-hover:fill-yellow-300 group-hover:scale-105"
+              viewBox="0 0 33 38"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M25.5 0.5H7.5V6.5H25.5V0.5Z" />
+              <path d="M33 6.5H0V37.5H33V6.5Z" />
+            </svg>
+          )}
         </button>
       </div>
     </div>

@@ -14,10 +14,7 @@ export default function About() {
         </div>
 
         <p className="pr-15 pl-15 md:p-10 text-lg md:text-4xl text-center font-light text-black">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-          bibendum at tellus sit amet tristique. Phasellus sit amet feugiat
-          eros, a lobortis orci. Duis tempus aliquam sem, in convallis magna
-          bibendum eget.
+          La Semana Académica y Cultural es el magno evento de la Facultad de Informática, este evento marca la celebración por el aniversario de su fundación. La SAC está hecha por y para toda la comunidad, crearás recuerdos, amistades, vínculos, conocimientos y experiencias que nunca olvidarás 🫶🏻
         </p>
 
         <div className="hidden md:flex mt-20 h-1 w-6xl bg-linear-[90deg,rgba(247,94,99,1)_25%,rgba(66,205,255,1)_25%,rgba(66,205,255,1)_50%,rgba(197,240,111,1)_50%,rgba(214,235,107,1)_75%,rgba(255,223,98,1)_75%,rgba(255,223,98,1)_100%]"/>
