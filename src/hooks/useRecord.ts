@@ -15,7 +15,7 @@ const useRecord = () => {
     setData(null);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/records/${expediente}`);
+      const response = await fetch(`api/records/${expediente}`);
 
       if (!response.ok) {
         throw new Error(response.statusText || "Error al buscar expediente");
